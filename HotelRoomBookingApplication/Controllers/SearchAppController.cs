@@ -26,7 +26,7 @@ namespace HotelRoomBookingApplication.Controllers
             return View("HomeView");
 
         }
-
+        //comment
         public IActionResult GetHotels()
         {
             var list1 = service.GetHotels();

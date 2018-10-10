@@ -20,8 +20,11 @@ namespace HotelRoomBookingApplication.Controllers
             service = new AdminServiceApp();
             this.log = log;
         }
-
-       
+        //comment
+        public AdminAppController()
+        {
+            service = new AdminServiceApp();
+        }
         [ErrorFilter]
         public IActionResult Index()
         {
