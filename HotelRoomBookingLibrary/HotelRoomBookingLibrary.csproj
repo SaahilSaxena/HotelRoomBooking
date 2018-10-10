@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="obj\Debug\netcoreapp2.1\HotelRoomBookingLibrary.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\netcoreapp2.1\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\netcoreapp2.1\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\netcoreapp2.1\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\netcoreapp2.1\HotelRoomBookingLibrary.deps.json" />
+    <Content Include="bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Mvc.Core.xml" />
+    <Content Include="obj\Debug\netcoreapp2.1\HotelRoomBookingLibrary.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\project.assets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\netcoreapp2.1\HotelRoomBookingLibrary.dll" />
+    <None Include="bin\Debug\netcoreapp2.1\HotelRoomBookingLibrary.pdb" />
+    <None Include="bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Mvc.Core.dll" />
+    <None Include="obj\Debug\netcoreapp2.1\HotelRoomBookingLibrary.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\netcoreapp2.1\HotelRoomBookingLibrary.assets.cache" />
+    <None Include="obj\Debug\netcoreapp2.1\HotelRoomBookingLibrary.csproj.CopyComplete" />
+    <None Include="obj\Debug\netcoreapp2.1\HotelRoomBookingLibrary.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\netcoreapp2.1\HotelRoomBookingLibrary.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\netcoreapp2.1\HotelRoomBookingLibrary.dll" />
+    <None Include="obj\Debug\netcoreapp2.1\HotelRoomBookingLibrary.pdb" />
+    <None Include="obj\HotelRoomBookingLibrary.csproj.nuget.cache" />
+    <None Include="obj\HotelRoomBookingLibrary.csproj.nuget.g.props" />
+    <None Include="obj\HotelRoomBookingLibrary.csproj.nuget.g.targets" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.core\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

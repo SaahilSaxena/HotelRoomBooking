@@ -1,0 +1,39 @@
+﻿@using HotelRoomBookingLibrary;
+@model Credentials
+@{
+    ViewData["Title"] = "LoginView";
+}
+
+<center>
+    <h2>Login</h2>
+
+
+    <form name="login" asp-action="Login" asp-controller="AdminApp" method="post">
+        <fieldset>
+            <table>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" asp-for="Email" required/></td>
+                </tr>
+
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" asp-for="Password" required /></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Login" /></td>
+
+
+                    <td><input type="reset" value="Cancel" /></td>
+
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</center>

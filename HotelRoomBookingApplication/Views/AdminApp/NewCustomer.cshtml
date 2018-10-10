@@ -1,0 +1,32 @@
+﻿@using HotelRoomBookingService.Models.DB;
+@model Customer
+@{
+    ViewData["Title"] = "NewCustomer";
+}
+
+<h2>NewCustomer</h2>
+
+
+    <div>
+        <form asp-action="NewCustomer" asp-controller="AdminApp" method="post">
+
+            <span>CustomerName</span>
+            <input asp-for="CustomerName" required placeholder="Enter Name" />
+            <br />
+            <span>CustomerContact</span>
+            <input asp-for="CustomerContact" required />
+            <br />
+            <span>Email</span>
+            <input asp-for="Email" required />
+            <br />
+            <span>City</span>
+            <input asp-for="City" required />
+            <br />
+            <span>Password</span>
+            <input asp-for="Password" required />
+            <br />
+            <input type="submit" value="Add Customer" class="btn btn-primary" />
+        </form>
+    </div>
+
+
