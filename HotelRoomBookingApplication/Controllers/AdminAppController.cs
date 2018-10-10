@@ -17,13 +17,11 @@ namespace HotelRoomBookingApplication.Controllers
         ILogger<AdminAppController> log;
         public AdminAppController(ILogger<AdminAppController> log)
         {
+            service = new AdminServiceApp();
             this.log = log;
         }
 
-        public AdminAppController()
-        {
-            service = new AdminServiceApp();
-        }
+       
         [ErrorFilter]
         public IActionResult Index()
         {
@@ -36,15 +34,18 @@ namespace HotelRoomBookingApplication.Controllers
             try
             {
                 log.LogInformation("Executing GetProducts Method..");
+               
                 log.LogInformation("This is a Test Message");
-                
+
             }
-            catch(Exception exception)
+                
+            catch (Exception exception)
             {
                 log.LogCritical("error message ,e.g, DO NOT DIVIDE BY ZERO......................"); // In catch block
                 log.LogInformation("Executed GetProducts Method..");
             }
             return View();
+
         }
         [HttpPost]
         public IActionResult Login(Credentials credentials)

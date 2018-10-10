@@ -40,7 +40,7 @@ namespace HotelRoomBookingService.Controllers
             else
                 return Ok(result);
         }
-
+        //comment
         [Route("NewCustomer")]
         [HttpPost]
         public IActionResult NewCustomer(Customer c1)

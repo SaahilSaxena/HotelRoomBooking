@@ -42,7 +42,7 @@ namespace HotelRoomBookingApplication
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env ,ILoggerFactory logger)
         {
-             logger.AddFile("d:\\applog.txt",LogLevel.Error);
+             logger.AddFile("d:\\applog.txt");
             if (env.IsDevelopment()) 
             {
                 app.UseDeveloperExceptionPage();
