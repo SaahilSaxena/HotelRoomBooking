@@ -19,7 +19,7 @@ namespace HotelRoomBookingApplication.Controllers
         {
             this.log = log;
         }
-
+        //comment
         public AdminAppController()
         {
             service = new AdminServiceApp();
