@@ -24,14 +24,14 @@ namespace HotelRoomBookingApplication.Models
 
         public int Login(Credentials credentials)
         {
-            string customerId;
+            int customerId;
             string json = JsonConvert.SerializeObject(credentials);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = client.PostAsync("Admin/Authenticate", content).Result;
             if (response.IsSuccessStatusCode == true)
             {
-                customerId = response.Content.ReadAsStringAsync().Result;
-                return 1;
+                customerId = Convert.ToInt32(response.Content.ReadAsStringAsync().Result);
+                return customerId;
             }
             else
             

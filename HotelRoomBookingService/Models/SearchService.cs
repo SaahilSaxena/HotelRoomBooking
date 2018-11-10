@@ -41,5 +41,10 @@ namespace HotelRoomBookingService.Models
             var result = context.SelectedRooms.FromSql($"exec GetAvailableRooms {details.CheckIn},{details.CheckOut},{details.HotelId},{ac},{wifi} ").ToList();
             return result;
         }
+        public void AddBooking(Booking b1)
+        {
+            context.Booking.Add(b1);
+            context.SaveChanges();
+        }
     }
 }

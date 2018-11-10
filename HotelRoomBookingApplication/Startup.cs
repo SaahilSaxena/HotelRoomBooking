@@ -53,8 +53,8 @@ namespace HotelRoomBookingApplication
                 app.UseHsts();
             }
             app.UseMiddleware(typeof(ExceptionHandlingAppMiddleware));
-          //  app.UseSession();
-           // app.UseHttpsRedirection();
+            app.UseSession();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 

@@ -5,8 +5,9 @@ namespace HotelRoomBookingService.Models.DB
 {
     public partial class Payment
     {
-        public int? BookingId { get; set; }
-        public int? CustomerId { get; set; }
+        public int BookingId { get; set; }
+        public int CustomerId { get; set; }
+        public int HotelId { get; set; }
         public string PaymentType { get; set; }
         public decimal? TotalAmount { get; set; }
         public DateTime Date { get; set; }
@@ -14,5 +15,6 @@ namespace HotelRoomBookingService.Models.DB
 
         public Booking Booking { get; set; }
         public Customer Customer { get; set; }
+        public Hotel Hotel { get; set; }
     }
 }

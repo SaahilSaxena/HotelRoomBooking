@@ -6,112 +6,397 @@
 
 }
 @model HotelSearchDetails
-<h2>HomeView</h2>
 
-<p>Use this area to provide additional information.</p>
-<form asp-action="AvailableRooms" asp-controller="SearchApp">
-    <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-5">
 
-            <div class="form-group">
-                <select asp-items="@citylist" id="selCategory" name="Category" class="form-control">
-                    <option value="" selected disabled>--Select City--</option>
 
-                </select>
+<html>
+<head>
+    <style>
+        /*
+        * Specific styles of signin component
+        */
+        /*
+        * General styles
+        */
+        body, html {
+            height: 100%;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+        }
+
+        .card-container.card {
+            max-width: 800px;
+            height: 650px;
+            padding: 40px 40px;
+        }
+
+        .btn {
+            font-weight: 700;
+            height: 36px;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            ;
+            cursor: default;
+        }
+
+        /*
+        * Card component
+        */
+        .card {
+            background-color: #F7F7F7;
+            /* just in case there no content*/
+            padding: 20px 25px 30px;
+            margin: 0 auto 25px;
+            margin-top: 50px;
+            /* shadows and rounded borders */
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-img-card {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 10px;
+            display: block;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        /*
+        * Form styles
+        */
+        .profile-name-card {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0 0;
+            min-height: 1em;
+        }
+
+        .reauth-email {
+            display: block;
+            color: #404040;
+            line-height: 2;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .form-signin #inputEmail,
+        .form-signin #inputPassword {
+            direction: ltr;
+            height: 44px;
+            font-size: 16px;
+        }
+
+        .form-signin input[type=email],
+        .form-signin input[type=password],
+        .form-signin input[type=text],
+        .form-signin button {
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+            z-index: 1;
+            position: relative;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .form-signin .form-control:focus {
+            border-color: rgb(104, 145, 162);
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+        }
+
+        .btn.btn-signin {
+            /*background-color: #4d90fe; */
+            /*background-color: rgb(104, 145, 162);*/
+             background-color: rgba(255, 0, 0,.4);
+            padding: 0px;
+            font-weight: 700;
+            font-size: 14px;
+            height: 36px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            border: none;
+            -o-transition: all 0.218s;
+            -moz-transition: all 0.218s;
+            -webkit-transition: all 0.218s;
+            transition: all 0.218s;
+        }
+
+            .btn.btn-signin:hover,
+            .btn.btn-signin:active,
+            .btn.btn-signin:focus {
+                background-color: rgb(12, 97, 33);
+            }
+
+        .forgot-password {
+            color: rgb(104, 145, 162);
+        }
+
+            .forgot-password:hover,
+            .forgot-password:active,
+            .forgot-password:focus {
+                color: rgb(12, 97, 33);
+            }
+    </style>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    @*<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
+    @*<script>
+        function myFunction1() {
+            alert("Select City First!!");
+        }
+    </script>*@
+
+</head>
+<body>
+    <div class="container">
+        <div class="card card-container">
+            <h1 style="text-align:center">Welcome to Happy Live Inn!!</h1>
+
+            <p id="profile-name" class="profile-name-card"></p>
+            <form asp-action="AvailableRooms" asp-controller="SearchApp">
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-5">
+
+                        <div class="form-group">
+                            <select asp-items="@citylist" id="selCategory" name="Category" class="form-control">
+                                <option value="" selected disabled>--Select City--</option>
+
+                            </select>
+                        </div>
+                        <br />
+
+                        <div class="form-group">
+                            <select id="selSubCategory" name="HotelId" class="form-control"></select>
+                        </div>
+
+                        <br /> <br />
+                    </div>
+                    <div class="col-lg-4"></div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3">
+                        <mark>Check-in date</mark><input class="form-control" type="date" name="CheckIn" />
+                        <br />
+                        <br />
+                        <br />
+                        <input type="checkbox" asp-for="Wifi" style="transform:scale(1.5,1.5)"/><mark>&nbsp;&nbsp;&nbsp; WiFi Facility</mark>
+                        <br />
+                        <br />
+                        <br />
+                        <input type="checkbox" asp-for="Ac" style="transform:scale(1.5,1.5)"/><mark>&nbsp;&nbsp;&nbsp; A/C Facility</mark>
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                    <div class="col-md-2">
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                         <br />
+                        <br />
+                        <br />
+                        <br />
+                        <center><input type="submit" class="btn btn-primary" value="Search"  /></center>
+                    </div>
+
+                    <div class="col-md-3">
+                        <mark>Check-out date</mark><input class="form-control" name="CheckOut" type="date" />
+                    </div>
+                    <div class="col-md-2"></div>
+
+
+
+
+                </div>
+            </form>
+
+            @section Scripts
+                {
+                <script>
+                    $(document).ready(function () {
+                        //get the reference of category dropdown( html select element for category. #selCategory is the id. # is used to select element by ID)
+                        // "change" function will be called when you select a category;
+                        $('#selCategory').change(function () {
+                            //$.ajax function is used to make ajax requests to the home controller and its actions
+                            $.ajax({
+                                url: 'http://localhost:61606/admin/Hotels?id=' + $('#selCategory').val(), //Home controller and GetSubCategories action
+                                type: 'GET',                            // we want to make a HTTPGET request
+                                success: function (data) {      // if request is successful function is called by ajax and you can access the subcategories through "data" input parameter of the function
+                                    var opt;
+                                    var subcat = $('#selSubCategory');
+                                    subcat.empty();
+                                    //create an option,make it [disabled],[select] it,value is nothing and text is '--Select a subcategory--'
+                                    // for example <option disabled selected value=''>--Select a SubCategory--</option>
+                                    opt = $('<option>');
+                                    opt.attr('disabled', true);
+                                    opt.attr('selected', true);
+                                    opt.attr('value', '');
+                                    opt.text('--Select a SubCategory--');
+                                    //add this option of subcategory dropdown
+                                    subcat.append(opt);
+
+                                    //here we will programetically add the subcatories to the dropdown
+                                    for (var i = 0; i < data.length; i++)// data is an array of subcategories objects.
+                                    {
+                                        opt = $('<option>');  //this is how we create an option in jquery
+                                        opt.attr('value', data[i].hotelId);            // add option value
+                                        opt.text(data[i].hotelName);                             //add option text
+                                        subcat.append(opt);          //add option to subcategory dropdown
+                                    }
+                                },
+                                error: function (e) {
+                                    alert(e.toString());
+                                }
+                            });
+
+                        });
+                    });
+                </script>
+            }
+
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+</body>
+</html>
+
+
+
+@*<h2>HomeView</h2>
+
+    <p>Use this area to provide additional information.</p>
+    <form asp-action="AvailableRooms" asp-controller="SearchApp">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-5">
+
+                <div class="form-group">
+                    <select asp-items="@citylist" id="selCategory" name="Category" class="form-control">
+                        <option value="" selected disabled>--Select City--</option>
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="selSubCategory" name="HotelId" class="form-control"></select>
+                </div>
+
+
             </div>
-            <div class="form-group">
-                <select id="selSubCategory" name="HotelId" class="form-control"></select>
+            <div class="col-lg-4"></div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <mark>Check-in date</mark><input class="form-control" type="date" name="CheckIn" />
+                <br />
+                <br />
+
+                <input type="checkbox" asp-for="Wifi" /><mark>WiFi Facility</mark>
+                <br />
+                <br />
+                <input type="checkbox" asp-for="Ac" /><mark>A/C Facility</mark>
+                <br />
+                <br />
+            </div>
+            <div class="col-md-2">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <center><input type="submit" value="Search" /></center>
             </div>
 
+            <div class="col-md-3">
+                <mark>Check-out date</mark><input class="form-control" name="CheckOut" type="date" />
+            </div>
+            <div class="col-md-2"></div>
+
+
+
 
         </div>
-        <div class="col-lg-4"></div>
-
-    </div>
-    <div class="row">
-
-        <div class="col-md-2"></div>
-        <div class="col-md-3">
-            <mark>Check-in date</mark><input class="form-control" type="date" name="CheckIn" />
-            <br />
-            <br />
-
-            <input type="checkbox" asp-for="Wifi" /><mark>WiFi Facility</mark>
-            <br />
-            <br />
-            <input type="checkbox" asp-for="Ac" /><mark>A/C Facility</mark>
-            <br />
-            <br />
-        </div>
-        <div class="col-md-2">
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <center><input type="submit" value="Search" /></center>
-        </div>
-
-        <div class="col-md-3">
-            <mark>Check-out date</mark><input class="form-control" name="CheckOut" type="date" />
-        </div>
-        <div class="col-md-2"></div>
+    </form>
 
 
 
+    @section Scripts
+        {
+        <script>
+            $(document).ready(function () {
+                //get the reference of category dropdown( html select element for category. #selCategory is the id. # is used to select element by ID)
+                // "change" function will be called when you select a category;
+                $('#selCategory').change(function () {
+                    //$.ajax function is used to make ajax requests to the home controller and its actions
+                    $.ajax({
+                        url: 'http://localhost:61606/admin/Hotels?id=' + $('#selCategory').val(), //Home controller and GetSubCategories action
+                        type: 'GET',                            // we want to make a HTTPGET request
+                        success: function (data) {      // if request is successful function is called by ajax and you can access the subcategories through "data" input parameter of the function
+                            var opt;
+                            var subcat = $('#selSubCategory');
+                            subcat.empty();
+                            //create an option,make it [disabled],[select] it,value is nothing and text is '--Select a subcategory--'
+                            // for example <option disabled selected value=''>--Select a SubCategory--</option>
+                            opt = $('<option>');
+                            opt.attr('disabled', true);
+                            opt.attr('selected', true);
+                            opt.attr('value', '');
+                            opt.text('--Select a SubCategory--');
+                            //add this option of subcategory dropdown
+                            subcat.append(opt);
 
-    </div>
-</form>
-
-
-
-@section Scripts
-    {
-    <script>
-        $(document).ready(function () {
-            //get the reference of category dropdown( html select element for category. #selCategory is the id. # is used to select element by ID)
-            // "change" function will be called when you select a category;
-            $('#selCategory').change(function () {
-                //$.ajax function is used to make ajax requests to the home controller and its actions
-                $.ajax({
-                    url: 'http://localhost:61606/admin/Hotels?id=' + $('#selCategory').val(), //Home controller and GetSubCategories action
-                    type: 'GET',                            // we want to make a HTTPGET request
-                    success: function (data) {      // if request is successful function is called by ajax and you can access the subcategories through "data" input parameter of the function
-                        var opt;
-                        var subcat = $('#selSubCategory');
-                        subcat.empty();
-                        //create an option,make it [disabled],[select] it,value is nothing and text is '--Select a subcategory--'
-                        // for example <option disabled selected value=''>--Select a SubCategory--</option>
-                        opt = $('<option>');
-                        opt.attr('disabled', true);
-                        opt.attr('selected', true);
-                        opt.attr('value', '');
-                        opt.text('--Select a SubCategory--');
-                        //add this option of subcategory dropdown
-                        subcat.append(opt);
-
-                        //here we will programetically add the subcatories to the dropdown
-                        for (var i = 0; i < data.length; i++)// data is an array of subcategories objects.
-                        {
-                            opt = $('<option>');  //this is how we create an option in jquery
-                            opt.attr('value', data[i].hotelId);            // add option value
-                            opt.text(data[i].hotelName);                             //add option text
-                            subcat.append(opt);          //add option to subcategory dropdown
+                            //here we will programetically add the subcatories to the dropdown
+                            for (var i = 0; i < data.length; i++)// data is an array of subcategories objects.
+                            {
+                                opt = $('<option>');  //this is how we create an option in jquery
+                                opt.attr('value', data[i].hotelId);            // add option value
+                                opt.text(data[i].hotelName);                             //add option text
+                                subcat.append(opt);          //add option to subcategory dropdown
+                            }
+                        },
+                        error: function (e) {
+                            alert(e.toString());
                         }
-                    },
-                    error: function (e) {
-                        alert(e.toString());
-                    }
-                });
+                    });
 
+                });
             });
-        });
-    </script>
-}
+        </script>
+    }*@
 
 

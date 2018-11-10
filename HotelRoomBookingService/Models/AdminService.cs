@@ -31,6 +31,9 @@ namespace HotelRoomBookingService.Controllers.Models
             context.Customer.Add(c1);
             context.SaveChanges();
         }
+    
+       
+
        
     }
 }

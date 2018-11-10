@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using HotelRoomBookingService.Models.DB;
 using HotelRoomBookingApplication.Components;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace HotelRoomBookingApplication.Controllers
 {
@@ -21,14 +22,15 @@ namespace HotelRoomBookingApplication.Controllers
             this.log = log;
         }
         //comment
-        public AdminAppController()
-        {
-            service = new AdminServiceApp();
-        }
+        //public AdminAppController()
+        //{
+        //    service = new AdminServiceApp();
+        //}
         [ErrorFilter]
         public IActionResult Index()
         {
-            return View();
+            return View("Index");
+            //Response.Redirect("Homeview");
         }
         public IActionResult LoginView()
         {
@@ -59,9 +61,12 @@ namespace HotelRoomBookingApplication.Controllers
                 ModelState.AddModelError("Email", "Login Failed..");
                 return View("LoginView", credentials);
             }
-
-            //return View("../SearchApp/HomeView");
-            return RedirectToAction("GetCities", "SearchApp");
+            else {
+                HttpContext.Session.SetInt32("CustomerId", result);
+                //return View("../SearchApp/HomeView");
+                return RedirectToAction("GetCities", "SearchApp");
+            }
+            
         }
 
         

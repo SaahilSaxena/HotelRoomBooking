@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace HotelRoomBookingApplication.Models
@@ -14,6 +16,7 @@ namespace HotelRoomBookingApplication.Models
     public class SearchServiceApp
     {
         HttpClient client;
+       
         public SearchServiceApp()
         {
             client = new HttpClient();
@@ -54,10 +57,37 @@ namespace HotelRoomBookingApplication.Models
                      HotelName=r.HotelName,
                       RoomId=r.RoomId,
                        RoomPrice=r.RoomPrice,
+                        //CheckIn = r.CheckIn,
+                         //CheckOut = r.CheckOut,
+                          HotelImage=r.HotelImage,
                         Selected=false
             }).ToList();
             return result;
 
+        }
+       public void storeSelectedRoomsToSession(HttpContext context, List<SelectedRoomsViewModel> rooms )
+        {
+            
+            string sel_obj = JsonConvert.SerializeObject(rooms);
+            context.Session.SetString("selectedRoomList", sel_obj);
+        }
+
+        public void UserSearchInfo(HttpContext context, HotelSearchDetails details)
+        {
+
+            string avail_obj = JsonConvert.SerializeObject(details);
+            context.Session.SetString("userSearchData", avail_obj);
+        }
+
+        public HotelSearchDetails GetUserInfo(HttpContext context)
+        {
+            //HttpResponseMessage response = client.GetAsync("Admin/SelectedRooms").Result;
+            //string json = response.Content.ReadAsStringAsync().Result;
+
+            string roomstring = context.Session.GetString("userSearchData");
+
+            HotelSearchDetails UserInfo = JsonConvert.DeserializeObject<HotelSearchDetails>(roomstring);
+            return UserInfo;
         }
     }
 }

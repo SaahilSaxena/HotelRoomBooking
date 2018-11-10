@@ -6,7 +6,7 @@ namespace HotelRoomBookingService.Models.DB
     public partial class BookingDetails
     {
         public int BookingId { get; set; }
-        public int HotelId { get; set; }
+        public int? HotelId { get; set; }
         public int RoomId { get; set; }
         public int Days { get; set; }
         public decimal? RoomPrice { get; set; }

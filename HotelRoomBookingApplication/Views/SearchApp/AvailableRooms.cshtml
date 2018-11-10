@@ -7,76 +7,91 @@
     ViewData["Title"] = "AvailableRooms";
 }
 
-<h2>AvailableRooms</h2>
+
 
 
 <form asp-action="SelectedRooms" asp-controller="SearchApp" method="post">
+
     <div>
-        <div class="col-md-10"></div>
-        <div class="col-md-2">
-            <input type="submit" value="Book Rooms"  class="btn btn-success"/>
-        </div>
+        @*<img src="~/images/credit.png" />*@
+        @*<input asp-for="Model.HotelName" type="hidden" name="name" value="" />*@
     </div>
+
+    <div>
+        <div>
+            <br />
+            <br />
+            <br />
+            <img src="@Model[0].HotelImage" height="400" width="900" alt="Oops!!" />
+        </div><br />
+
+        <h1>
+            <label>@Model[0].HotelName</label>
+            <input type="hidden" value="@Model[0].HotelName" name="[0].HotelName" />
+        </h1><br />
+
+
+        <h4>
+            <label>@Model[0].City</label>
+            <input type="hidden" value="@Model[0].City" />
+        </h4>
+
+
+        <h4>
+            <label>Hotel Contact &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model[0].HotelContact</label>
+            <input type="hidden" value="@Model[0].HotelContact" name="[0].HotelContact" />
+        </h4>    <br /><br /><br />
+    </div>
+
     <table width="1000">
         <tr>
-            <td><label>HotelId</label></td>
-            <td><label>RoomId</label></td>
-            <td><label>City</label></td>
-            <td><label>HotelContact</label></td>
-            <td><label>RoomPrice</label></td>
-            <td><label>HotelName</label></td>
+            <td><h4><label>RoomId</label></h4></td>
+            <td><h4><label>RoomPrice</label></h4></td>
+            <td></td>
         </tr>
 
         @for (int i = 0; i < Model.Count; i++)
         {
-        <tr>
-
-
-            <td>
-                <label>@Model[i].HotelId</label>
-                <input type="hidden" value="@Model[i].HotelId" name="[@i].HotelId" />
-            </td>
-
-
-            <td>
-                <label>@Model[i].RoomId</label>
-                <input type="hidden" value="@Model[i].RoomId" name="[@i].RoomId" />
-            </td>
-
-            <td>
-                <label>@Model[i].City</label>
-                <input type="hidden" value="@Model[i].City" name="[@i].City" />
-            </td>
-
-
-            <td>
-                <label>@Model[i].HotelContact</label>
-                <input type="hidden" value="@Model[i].HotelContact" name="[@i].HotelContact" />
-            </td>
-
-            <td>
-                <label>@Model[i].RoomPrice</label>
-                <input type="hidden" value="@Model[i].RoomPrice" name="[@i].RoomPrice" />
-            </td>
-            <td>
-                <label>@Model[i].HotelName</label>
-                <input type="hidden" value="@Model[i].HotelName" name="[@i].HotelName" />
-            </td>
-
-            <td>
-                <label>Select Room</label>
-                <input type="checkbox" asp-for="@Model[i].Selected" style="transform:scale(2,2)" />
-            </td>
+            <tr>
 
 
 
-        </tr>
+                <td>
+                    <label>@Model[i].RoomId</label>
+                    <input type="hidden" value="@Model[i].RoomId" name="[@i].RoomId" />
+                </td>
+
+
+
+                <td>
+                    <label>@Model[i].RoomPrice</label>
+                    <input type="hidden" value="@Model[i].RoomPrice" name="[@i].RoomPrice" />
+                </td>
+
+
+                <td>
+                    <label>Select Room &nbsp;&nbsp;&nbsp;</label>
+                    <input type="checkbox" asp-for="@Model[i].Selected" style="transform:scale(1.5,1.5)" />
+                </td>
+
+                <td>
+                    @*<img src="@Model[i].H"/>*@
+                </td>
+
+            </tr>
 
         }
 
 
     </table>
 
-
+    <div>
+        <div class="col-md-8"></div>
+        <div class="col-md-2">
+            <br />
+            <br />
+            <input type="submit" value="Book Rooms" class="btn btn-success" />
+        </div>
+    </div>
 </form>
 

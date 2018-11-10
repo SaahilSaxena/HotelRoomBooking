@@ -1,0 +1,242 @@
+﻿
+@{
+    ViewData["Title"] = "Payment";
+    //decimal totalAmount = (decimal)ViewData["total"];
+}
+
+
+
+<script type="text/javascript">
+    function displayForm(c) {
+        if (c.value == "CC") {
+
+            document.getElementById("ccformContainer").style.visibility = 'visible';
+            document.getElementById("DebitcardformContainer").style.visibility = 'hidden';
+        } else if (c.value == "DC") {
+            document.getElementById("ccformContainer").style.visibility = 'hidden';
+
+            document.getElementById("DebitcardformContainer").style.visibility = 'visible';
+        } else { }
+    }
+
+</script>
+
+<div>
+    <form asp-controller="PaymentApp" asp-action="PlaceOrder" method="post">
+        <br />
+        <br />
+        <input value="CC" type="radio" name="payMode" style="transform:scale(1.5,1.5)" checked="checked" onClick="displayForm(this)"/>&nbsp;&nbsp;&nbsp;Via Credit Card &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <input value="DC" type="radio" name="payMode" style="transform:scale(1.5,1.5)" onClick="displayForm(this)"/>&nbsp;&nbsp;&nbsp;Via Debit Card
+
+        <div style="visibility:hidden; position:relative" id="ccformContainer">
+            <br />
+            <br />
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label>Enter Email: </label>
+
+                        <input type="email" style="width:500px" placeholder="Email Address" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="form-group">
+                        <label>Enter Name: </label>
+
+                        <input type="text" style="width:500px" placeholder="Your Name here" />
+
+                    </div>
+                </div>
+            </div>
+
+            
+            <br />
+
+            <label>Enter your credit card details :</label>
+            <br>
+            <br>
+
+            <p>
+                Credit Card Name :
+                <input type="text" id="ccname" style="width:460px" placeholder="Credit Card Name">
+            </p>
+            <br />
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="cardNumber">CARD NUMBER</label>
+                        <div class="input-group">
+                            <input type="tel"
+                                   class="form-control"
+                                  
+                                   placeholder="Valid Card Number"
+                                   autocomplete="cc-number"
+                                   minlength="16"
+                                   id="ccnumber"
+                                    />
+                            <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                <div class="row">
+                    <div class="col-xs-7 col-md-7">
+                        <div class="form-group">
+                            <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+
+                            Month :
+                            <select>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select> <span>
+                                Year : <select>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-7 col-md-5">
+                        <div class="form-group">
+                            <label for="cardCVC">CV CODE</label>
+                            <input type="tel"
+                                   class="form-control"
+                                   
+                                   placeholder="CVC"
+                                   minlength="3"
+                                   id="cccvc"
+                                   autocomplete="cc-csc"
+                                   />
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+        </div>
+
+
+        @*``````````````````````````````````````````````````````````````````````````*@
+
+
+
+
+        <div style="visibility:hidden;position:relative;top:-200px;margin-top:-200px"
+             id="DebitcardformContainer">
+
+
+            <label>Enter your Debit card details :</label>
+            <br>
+            <br>
+
+            <p>
+                Name on Debit Card :
+                <input type="text" id="dcname" style="width:320px" placeholder="Debit Card Name">
+            </p>
+            <br />
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="cardNumber">CARD NUMBER</label>
+                        <div class="input-group">
+                            <input type="tel"
+                                   class="form-control"
+                                 
+                                   placeholder="Valid Card Number"
+                                   autocomplete="dc-number"
+                                   minlength="16"
+                                   id="dcnumber"
+                                   style="width:460px"
+                                  />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                <div class="row">
+                    <div class="col-xs-7 col-md-7">
+                        <div class="form-group">
+                            <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+
+                            Month :
+                            <select >
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select> <span>
+                                Year : <select>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-7 col-md-5">
+                        <div class="form-group">
+                            <label for="cardCVC">CV CODE</label>
+                            <input type="tel"
+                                   class="form-control"
+                                  
+                                   placeholder="CVC"
+                                   minlength="3"
+                                   id="dccvc"
+                                   autocomplete="dc-csc"
+                                    />
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+        @*<label>Total Amount @totalAmount</label>*@
+
+        <div id="float_right">
+
+            @*<a asp-controller="PaymentApp" asp-action="PostValues" class="btn btn-primary" asp-route="">Pay Now</a>*@
+            <input type="submit" value="Pay Now"/>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,78 @@
+﻿@using HotelRoomBookingLibrary;
+
+@{
+    ViewData["Title"] = "SelectedRooms";
+    HotelSearchDetails info = (HotelSearchDetails)ViewData["userSearchInfo"];
+    List<SelectedRoomsViewModel> list = (List<SelectedRoomsViewModel>)ViewData["selectedRooms"];
+    decimal totalAmount = (decimal)ViewData["total"];
+
+}
+
+<h2><center>FinalView</center></h2>
+
+<style>
+    .blank_row {
+        height: 10px !important; /* overwrites any other rules */
+        background-color: #FFFFFF;
+    }
+</style> 
+
+<div>
+    <center><h1> <label>Summary</label></h1></center>
+    <br /><br /><br /><br /><br />
+
+    @*<tr>
+        <th>Hotel Name</th>
+        <td>@l</td>
+    </tr>*@
+    
+                            <table align="center" border="0">
+                                <tr>
+                                    <th>Hotel Name</th>
+                                    <td>@list[0].HotelName</td>
+                                </tr>
+                                <tr>
+                                    <th width="200px">Hotel Contact</th>
+                                    <td>@list[0].HotelContact</td>
+                                </tr>
+                                <tr>
+                                    <th>Check In</th>
+                                    <td>@string.Format("{0:dd/MMM/yyyy}", list[0].CheckIn)</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Check Out</th>
+                                    <td>@string.Format("{0:dd/MMM/yyyy}", list[0].CheckOut)</td>
+                                </tr>
+
+                                @foreach (var i in list)
+
+                                {
+
+                                    <tr>
+                                        <th>Room Number</th>
+                                        <td>@i.RoomId</td>
+                                    </tr>
+
+
+
+
+                                    <tr class="blank_row">
+                                        <td colspan="3"></td>
+                                    </tr>
+
+                                }
+
+                            </table>
+    <br /><br />
+          <center>
+              <label>Total Amount @totalAmount</label>
+              <input type="hidden" value="@totalAmount" name="@totalAmount" />
+              <br /><br /><br />
+              <div>
+                  <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;<a asp-controller="PaymentApp" asp-action="Payment" class="btn btn-primary">Proceed to Payment</a>
+              </div>
+          </center>
+
+</div>

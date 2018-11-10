@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using HotelRoomBookingApplication.Models;
 using HotelRoomBookingLibrary;
 using HotelRoomBookingService.Models.DB;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace HotelRoomBookingApplication.Controllers
 {
@@ -42,7 +44,8 @@ namespace HotelRoomBookingApplication.Controllers
             List<SelectedRoomsViewModel> list;
             try
             {
-                list= service.GetRooms(details);
+                service.UserSearchInfo(HttpContext, details);
+                list = service.GetRooms(details);
                 return View(list);
             }
             catch(Exception e)
@@ -58,10 +61,43 @@ namespace HotelRoomBookingApplication.Controllers
          public IActionResult SelectedRooms(List<SelectedRoomsViewModel> rooms)
         {
             //List<SelectedRoomsViewModel> model = SelectedRoomsViewModel.rooms
-             decimal total=rooms.Sum(c => c.RoomPrice);
+
+            //ViewData["rooms"] = rooms;
+            HotelSearchDetails userinfo = service.GetUserInfo(HttpContext);
+
+            int date = (userinfo.CheckOut - userinfo.CheckIn).Days+1;
+            rooms = rooms.Where(r => r.Selected == true).ToList();
+            decimal total = rooms.Sum(c => c.RoomPrice);
+            total = date * total;
             ViewData["total"] = total;
-            ViewData["rooms"] = rooms;
-            return View("FinalView");
+            service.storeSelectedRoomsToSession(HttpContext, rooms);
+
+
+            //rooms.SingleOrDefault(r => r.RoomId == 209);
+
+            //rooms.Select(c => { c.CheckIn = userinfo.CheckIn; c.CheckOut = userinfo.CheckOut; } );
+
+            foreach (SelectedRoomsViewModel room in rooms)
+            {
+                room.CheckIn = userinfo.CheckIn;
+                room.CheckOut = userinfo.CheckOut;
+            }
+            
+          //  rooms.SingleOrDefault(userinfo.CheckIn)
+          
+
+            ViewData["userSearchInfo"]= userinfo;
+            ViewData["selectedRooms"] = rooms;
+            return View();
+
+           
+        }
+      
+        public IActionResult HomeView()
+        {
+            return View();
         }
     }
 }
+
+

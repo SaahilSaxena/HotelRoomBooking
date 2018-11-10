@@ -41,5 +41,13 @@ namespace HotelRoomBookingService.Controllers
         {
             return service.GetRooms(details);
         }
+
+        [Route("Booking")]
+        [HttpPost]
+        public IActionResult Booking(Booking b1)
+        {
+            service.AddBooking(b1);
+            return Ok();
+        }
     }
 }

@@ -16,20 +16,20 @@ namespace HotelRoomBookingService.Models.DB
         {
         }
 
-       // public virtual DbSet<SelectedRoomsViewModel> SelectedRoomsViewModel { get; set; }
-        public virtual DbSet<SelectedRooms> SelectedRooms { get; set; }
         public virtual DbSet<Booking> Booking { get; set; }
         public virtual DbSet<BookingDetails> BookingDetails { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<Hotel> Hotel { get; set; }
         public virtual DbSet<HotelRoom> HotelRoom { get; set; }
         public virtual DbSet<Payment> Payment { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<SelectedRooms> SelectedRooms { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("server=localhost;database=HotelRoomBookingDB;trusted_connection=yes");
             }
         }
@@ -38,9 +38,9 @@ namespace HotelRoomBookingService.Models.DB
         {
             modelBuilder.Entity<Booking>(entity =>
             {
-                entity.Property(e => e.Checkin).HasColumnType("datetime");
+                entity.Property(e => e.Checkin).HasColumnType("date");
 
-                entity.Property(e => e.Checkout).HasColumnType("datetime");
+                entity.Property(e => e.Checkout).HasColumnType("date");
 
                 entity.Property(e => e.TotalAmount).HasColumnType("money");
 
@@ -57,7 +57,7 @@ namespace HotelRoomBookingService.Models.DB
 
             modelBuilder.Entity<BookingDetails>(entity =>
             {
-                entity.HasKey(e => new { e.BookingId, e.HotelId, e.RoomId });
+                entity.HasKey(e => new { e.BookingId, e.RoomId });
 
                 entity.Property(e => e.RoomPrice).HasColumnType("money");
 
@@ -70,7 +70,6 @@ namespace HotelRoomBookingService.Models.DB
                 entity.HasOne(d => d.Hotel)
                     .WithMany(p => p.BookingDetails)
                     .HasForeignKey(d => d.HotelId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("BookingDetailsfk1");
 
                 entity.HasOne(d => d.Room)
@@ -125,6 +124,10 @@ namespace HotelRoomBookingService.Models.DB
                     .HasMaxLength(15)
                     .IsUnicode(false);
 
+                entity.Property(e => e.HotelImage)
+                    .IsRequired()
+                    .IsUnicode(false);
+
                 entity.Property(e => e.HotelName)
                     .IsRequired()
                     .HasMaxLength(30)
@@ -170,12 +173,46 @@ namespace HotelRoomBookingService.Models.DB
                 entity.HasOne(d => d.Booking)
                     .WithMany(p => p.Payment)
                     .HasForeignKey(d => d.BookingId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Paymentfk");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Payment)
                     .HasForeignKey(d => d.CustomerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Paymentfk1");
+
+                entity.HasOne(d => d.Hotel)
+                    .WithMany(p => p.Payment)
+                    .HasForeignKey(d => d.HotelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Paymentfk2");
+            });
+
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.Property(e => e.Price)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ProductDescription)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ProductImage)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ProductName)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SupplierName)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
             });
         }
     }

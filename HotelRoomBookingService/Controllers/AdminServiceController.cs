@@ -48,9 +48,7 @@ namespace HotelRoomBookingService.Controllers
             service.AddRecord(c1);
             return Ok();
         }
-        ////public void NewCustomer(Customer c1)
-        ////{
-        ////    throw new NotImplementedException();
-        ////}
+       
+       
     }
 }
