@@ -57,7 +57,7 @@ namespace HotelRoomBookingApplication.Controllers
             }
         }
 
-       
+       //comment push
          public IActionResult SelectedRooms(List<SelectedRoomsViewModel> rooms)
         {
             //List<SelectedRoomsViewModel> model = SelectedRoomsViewModel.rooms
