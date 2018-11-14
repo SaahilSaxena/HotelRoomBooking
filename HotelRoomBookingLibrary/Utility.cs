@@ -56,5 +56,6 @@ namespace HotelRoomBookingLibrary
         public List<SelectedRoomsViewModel> SelectedRooms { get; set; }
         public HotelSearchDetails userinfo { get; set; }
         public string payMode { get; set; }
+       
     }
 }

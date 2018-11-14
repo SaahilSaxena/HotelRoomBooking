@@ -1,6 +1,9 @@
-﻿
+﻿@using HotelRoomBookingLibrary;
 @{
     ViewData["Title"] = "PlaceOrder";
+    int InvoiceNumber = (int)ViewData["InvoiceNumber"];
+    HotelSearchDetails info = (HotelSearchDetails)ViewData["userSearchInfo"];
+    List<SelectedRoomsViewModel> list = (List<SelectedRoomsViewModel>)ViewData["selectedRooms"];
 }
 
 <h2>PlaceOrder</h2>
@@ -37,14 +40,15 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="invoice-title">
-                <h2>Invoice</h2><h3 class="pull-right">Invoice Number</h3>
+                <h2>Invoice</h2><h3 class="pull-right">Invoice Number</h3><br />
+                <h3 class="pull-right">@InvoiceNumber</h3>
             </div>
             <hr>
             <div class="row">
                 <div class="col-xs-6">
                     <address>
-                        <strong>Billed To:</strong><br>
-                        John Smith<br>
+                        <strong>Booked By</strong><br>
+                        <br>
                         1234 Main<br>
                         Apt. 4B<br>
                         Springfield, ST 54321

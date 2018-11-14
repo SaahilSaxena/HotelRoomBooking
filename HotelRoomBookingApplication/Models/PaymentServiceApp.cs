@@ -20,7 +20,8 @@ namespace HotelRoomBookingApplication.Models
             client.BaseAddress = new Uri("http://localhost:61606");
         }
 
-        public int FinalBooking(string payMode) {
+        public int FinalBooking(string payMode)
+        {
 
             int InvoiceNumber;
 
@@ -45,17 +46,50 @@ namespace HotelRoomBookingApplication.Models
             InvoiceNumber = Convert.ToInt32(response.Content.ReadAsStringAsync().Result);
             return InvoiceNumber;
 
+           
+
             //-----------------------------------------------------------------
 
-
-
-
-            //HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-
-
-
-
-
         }
+
+       
+        public void storeSelectedRoomsToSession(HttpContext context, List<SelectedRoomsViewModel> rooms)
+        {
+
+            string sel_obj = JsonConvert.SerializeObject(rooms);
+            context.Session.SetString("selectedRoomList", sel_obj);
+        }
+        public List<SelectedRoomsViewModel> GetSelectedRooms(HttpContext context)
+        {
+            string selectedroomstring = context.Session.GetString("selectedRoomList");
+
+            List<SelectedRoomsViewModel> rooms = JsonConvert.DeserializeObject<List<SelectedRoomsViewModel>>(selectedroomstring);
+            return rooms;
+        }
+
+
+
+        public void UserSearchInfo(HttpContext context, HotelSearchDetails details)
+        {
+
+            string avail_obj = JsonConvert.SerializeObject(details);
+            context.Session.SetString("userSearchData", avail_obj);
+        }
+
+        public HotelSearchDetails GetUserInfo(HttpContext context)
+        {
+            string roomstring = context.Session.GetString("userSearchData");
+
+            HotelSearchDetails UserInfo = JsonConvert.DeserializeObject<HotelSearchDetails>(roomstring);
+            return UserInfo;
+        }
+
+        
+
+
+
+
+
+
     }
 }

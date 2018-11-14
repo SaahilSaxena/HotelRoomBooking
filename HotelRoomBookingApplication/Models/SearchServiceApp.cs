@@ -81,8 +81,7 @@ namespace HotelRoomBookingApplication.Models
 
         public HotelSearchDetails GetUserInfo(HttpContext context)
         {
-            //HttpResponseMessage response = client.GetAsync("Admin/SelectedRooms").Result;
-            //string json = response.Content.ReadAsStringAsync().Result;
+            
 
             string roomstring = context.Session.GetString("userSearchData");
 

@@ -26,14 +26,25 @@ namespace HotelRoomBookingService.Controllers.Models
             return result;
 
         }
+
+
+
+
+
+        //public void AddRecord(Customer c1)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+
         public void AddRecord(Customer c1)
         {
             context.Customer.Add(c1);
             context.SaveChanges();
         }
-    
-       
 
-       
+
+
+
     }
 }

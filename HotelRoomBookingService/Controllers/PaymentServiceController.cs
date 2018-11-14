@@ -21,23 +21,7 @@ namespace HotelRoomBookingService.Controllers
         }
 
 
-        //[Route("BookingDetails")]
-        //[HttpPost]
-        //public IActionResult BookingDetails(HotelSearchDetails h1)
-        //{
-        //    service.BookingDetails(h1);
-        //    return Ok();
-        //}
-
-
-        //[Route("BookingDetails")]
-        //[HttpPost]
-        //public IActionResult BookingDetails(HotelSearchDetails bd1)
-        //{
-        //    service.AddBookingDetails(bd1);
-        //    return Ok();
-        //}
-
+       
         [Route("MakeBooking")]
         [HttpPost]
         public IActionResult BookingDetails(AllData allData)
