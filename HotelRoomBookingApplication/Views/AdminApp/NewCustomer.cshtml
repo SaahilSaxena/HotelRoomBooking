@@ -152,7 +152,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script>
+    @*<script>
         function myFunction() {
             alert("Registered Successfully!!");
         }
@@ -167,43 +167,9 @@
             });
         });
 
+ </script>*@
 
 
-
-
-
-        //function checkform() {
-        //var f = document.forms["theform"].elements;
-        //var cansubmit = true;
-
-        //for (var i = 0; i < f.length; i++) {
-        //    if (f[i].value.length == 0) cansubmit = false;
-        //}
-
-
-        //if (cansubmit) {
-        //    document.getElementById('submitbutton').disabled = !cansubmit;
-        //    //document.getElementById('submitbutton').disabled = false;
-        //}
-
-
-        //function checkform() {
-        //    var f = document.forms["theform"].elements;
-        //    var cansubmit = true;
-
-        //    for (var i = 0; i < f.length; i++) {
-        //        if (f[i].value.length == 0) cansubmit = false;
-        //    }
-
-        //    if (cansubmit) {
-        //        document.getElementById('submitbutton').disabled = false;
-        //    }
-        //    else {
-        //        document.getElementById('submitbutton').disabled = 'disabled';
-        //    }
-        //}
-
-    </script>
 </head>
 <body>
     <div class="container">
@@ -221,15 +187,15 @@
                 <input asp-for="CustomerContact" class="form-control" placeholder="Enter contact" required />
                 <br />
                 <span>Email</span>
-                <input asp-for="Email" class="form-control" placeholder="Enter Email" id="email" required onchange="UserCheck()"/>
+                <input asp-for="Email" class="form-control" placeholder="Enter Email" id="email"  required/>
                 <br />
                 <span>City</span>
                 <input asp-for="City" class="form-control" placeholder="Enter City" required />
                 <br />
                 <span>Password</span>
-                <input asp-for="Password" type="password" class="form-control" placeholder="Enter Password" required onKeyup="checkform()" />
+                <input asp-for="Password" type="password" class="form-control" placeholder="Enter Password"   required />
                 <br />
-                <input type="submit" value="Add Customer" class="btn btn-primary" id="submitbutton" onKeyup="checkform()" />
+                <input type="submit" value="Add Customer" class="btn btn-primary" id="submitbutton"  />
             </form>
 
         </div><!-- /card-container -->
@@ -237,18 +203,8 @@
 </body>
 </html>
 
-<script type='text/javascript'>
-    //$(function () {
-    //    var f = document.forms["theform"].elements;
-    //    for (int i = 0; i < f.len)
-    //    $('#searchInput').onkeyup(function () {
-    //        if ($(this).val() == '') {
-    //            $('.enableOnInput').prop('disabled', true);
-    //        } else {
-    //            $('.enableOnInput').prop('disabled', false);
-    //        }
-    //    });
-    //});
+@*<script type='text/javascript'>
+    
 
      function checkform() {
             var f = document.forms["theform"].elements;
@@ -268,23 +224,6 @@
 
 
    
-   @* function UserCheck() {
-        $("#Status").html("Checking...");
-        $.post("@Url.Action("CheckUsernameAvailability", "Home")",
-            {
-                userdata: $("#Username").val()
-            },
-        function (data) {
-            if (data == 0) {
-                $("#Status").html('<font color="Green">Available !. you can take it.</font>');
-                $("#Username").css("border-color", "Green");
+  
 
-            }
-            else {
-                $("#Status").html('<font color="Red">That name is taken.Try Another.</font>');
-                $("#Username").css("border-color", "Red");
-            }
-        });
-    }*@
-
-    </script>
+    </script>*@

@@ -62,7 +62,7 @@ namespace HotelRoomBookingApplication
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=AdminApp}/{action=LoginView}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

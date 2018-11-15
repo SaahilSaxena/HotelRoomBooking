@@ -36,7 +36,6 @@
             -moz-user-select: none;
             -webkit-user-select: none;
             user-select: none;
-            ;
             cursor: default;
         }
 
@@ -178,7 +177,7 @@
                     <div class="col-lg-5">
 
                         <div class="form-group">
-                            <select asp-items="@citylist" id="selCategory" name="Category" class="form-control">
+                            <select asp-items="@citylist" id="selCategory" name="Category" class="form-control" required>
                                 <option value="" selected disabled>--Select City--</option>
 
                             </select>
@@ -186,7 +185,7 @@
                         <br />
 
                         <div class="form-group">
-                            <select id="selSubCategory" name="HotelId" class="form-control"></select>
+                            <select id="selSubCategory" name="HotelId" class="form-control" required></select>
                         </div>
 
                         <br /> <br />
@@ -198,15 +197,19 @@
 
                     <div class="col-md-2"></div>
                     <div class="col-md-3">
-                        <mark>Check-in date</mark><input class="form-control" type="date" name="CheckIn" />
+                        <mark>Check-in date</mark><input id="cin" class="form-control" type="date" name="CheckIn" required />
+                        @*<script>
+                            DateInput('checkindate', true, 'DD-MM-YYYY')
+                        </script>*@
+
                         <br />
                         <br />
                         <br />
-                        <input type="checkbox" asp-for="Wifi" style="transform:scale(1.5,1.5)"/><mark>&nbsp;&nbsp;&nbsp; WiFi Facility</mark>
+                        <input type="checkbox" asp-for="Wifi" style="transform:scale(1.5,1.5)" /><mark>&nbsp;&nbsp;&nbsp; WiFi Facility</mark>
                         <br />
                         <br />
                         <br />
-                        <input type="checkbox" asp-for="Ac" style="transform:scale(1.5,1.5)"/><mark>&nbsp;&nbsp;&nbsp; A/C Facility</mark>
+                        <input type="checkbox" asp-for="Ac" style="transform:scale(1.5,1.5)" /><mark>&nbsp;&nbsp;&nbsp; A/C Facility</mark>
                         <br />
                         <br />
                         <br />
@@ -222,15 +225,19 @@
                         <br />
                         <br />
                         <br />
-                         <br />
                         <br />
                         <br />
                         <br />
-                        <center><input type="submit" class="btn btn-primary" value="Search"  /></center>
+                        <br />
+                        <center><input id="btnsubmit" type="submit" class="btn btn-primary" value="Search" /></center>
                     </div>
 
                     <div class="col-md-3">
-                        <mark>Check-out date</mark><input class="form-control" name="CheckOut" type="date" />
+                        <mark>Check-out date</mark><input id="cout" class="form-control" name="CheckOut" type="date" required />
+                        @*<script>
+                            DateInput('checkoutdate', true, 'DD-MM-YYYY')
+                        </script>*@
+
                     </div>
                     <div class="col-md-2"></div>
 
@@ -281,8 +288,66 @@
 
                         });
                     });
+
+                    $('#btnsubmit').click(function (e) {
+
+                        var cin =$('#cin').val();
+                        var cout = $('#cout').val();
+
+                        var cindate = new Date(cin);
+                        var coutdate = new Date(cout);
+                        var today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        cindate.setHours(0, 0, 0, 0);
+                        if (cindate < today)
+                        {
+                            alert('error');
+                            e.preventDefault();
+                        }
+                        else if (cindate > coutdate) {
+                            alert('cin > cout');
+                            e.preventDefault();
+                        }
+                    });
+
                 </script>
             }
+            @*<script>
+            $(function () {
+                $("#datepicker").datepicker({ dateFormat: "mm-dd-yyyy" }).val()
+            });
+            $(function () {
+                $("#datepicker").datepicker();
+                $("#datepicker").on('change', function () {
+                    var date = Date.parse($(this).val());
+                    if (date < Date.now()) {
+                        alert('Selected date must be greater than today date');
+                        $(this).val('');
+                    }
+                });
+            });
+
+
+            //Date picker date format code as follows
+
+
+        </script>*@
+
+
+
+            @*<SCRIPT LANGUAGE="JavaScript">
+                function validate() {
+                    var frm = document.forms["form"];
+                    if (frm.checkbox.checked == false) {
+                        alert("Please Agree To Our Cancellation Policy.");
+                        return false;
+                    } else return true;
+
+                }
+            </SCRIPT>*@
+
+
+
 
         </div><!-- /card-container -->
     </div><!-- /container -->
@@ -290,113 +355,5 @@
 </html>
 
 
-
-@*<h2>HomeView</h2>
-
-    <p>Use this area to provide additional information.</p>
-    <form asp-action="AvailableRooms" asp-controller="SearchApp">
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-5">
-
-                <div class="form-group">
-                    <select asp-items="@citylist" id="selCategory" name="Category" class="form-control">
-                        <option value="" selected disabled>--Select City--</option>
-
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select id="selSubCategory" name="HotelId" class="form-control"></select>
-                </div>
-
-
-            </div>
-            <div class="col-lg-4"></div>
-
-        </div>
-        <div class="row">
-
-            <div class="col-md-2"></div>
-            <div class="col-md-3">
-                <mark>Check-in date</mark><input class="form-control" type="date" name="CheckIn" />
-                <br />
-                <br />
-
-                <input type="checkbox" asp-for="Wifi" /><mark>WiFi Facility</mark>
-                <br />
-                <br />
-                <input type="checkbox" asp-for="Ac" /><mark>A/C Facility</mark>
-                <br />
-                <br />
-            </div>
-            <div class="col-md-2">
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <center><input type="submit" value="Search" /></center>
-            </div>
-
-            <div class="col-md-3">
-                <mark>Check-out date</mark><input class="form-control" name="CheckOut" type="date" />
-            </div>
-            <div class="col-md-2"></div>
-
-
-
-
-        </div>
-    </form>
-
-
-
-    @section Scripts
-        {
-        <script>
-            $(document).ready(function () {
-                //get the reference of category dropdown( html select element for category. #selCategory is the id. # is used to select element by ID)
-                // "change" function will be called when you select a category;
-                $('#selCategory').change(function () {
-                    //$.ajax function is used to make ajax requests to the home controller and its actions
-                    $.ajax({
-                        url: 'http://localhost:61606/admin/Hotels?id=' + $('#selCategory').val(), //Home controller and GetSubCategories action
-                        type: 'GET',                            // we want to make a HTTPGET request
-                        success: function (data) {      // if request is successful function is called by ajax and you can access the subcategories through "data" input parameter of the function
-                            var opt;
-                            var subcat = $('#selSubCategory');
-                            subcat.empty();
-                            //create an option,make it [disabled],[select] it,value is nothing and text is '--Select a subcategory--'
-                            // for example <option disabled selected value=''>--Select a SubCategory--</option>
-                            opt = $('<option>');
-                            opt.attr('disabled', true);
-                            opt.attr('selected', true);
-                            opt.attr('value', '');
-                            opt.text('--Select a SubCategory--');
-                            //add this option of subcategory dropdown
-                            subcat.append(opt);
-
-                            //here we will programetically add the subcatories to the dropdown
-                            for (var i = 0; i < data.length; i++)// data is an array of subcategories objects.
-                            {
-                                opt = $('<option>');  //this is how we create an option in jquery
-                                opt.attr('value', data[i].hotelId);            // add option value
-                                opt.text(data[i].hotelName);                             //add option text
-                                subcat.append(opt);          //add option to subcategory dropdown
-                            }
-                        },
-                        error: function (e) {
-                            alert(e.toString());
-                        }
-                    });
-
-                });
-            });
-        </script>
-    }*@
 
 

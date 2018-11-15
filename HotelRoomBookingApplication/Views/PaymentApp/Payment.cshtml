@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "Payment";
-    decimal totalAmount = (decimal)ViewData["total"];
+    //decimal totalAmount = (decimal)ViewData["total"];
 }
 
 
@@ -21,8 +21,9 @@
         }
 
         .card-container.card {
-            max-width: 350px;
+            max-width: 750px;
             padding: 40px 40px;
+            height:760px;
         }
 
         .btn {
@@ -32,6 +33,8 @@
             -webkit-user-select: none;
             user-select: none;
             cursor: default;
+            position:relative;
+            bottom:50px;
         }
 
         /*
@@ -52,109 +55,11 @@
             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
         }
 
-        .profile-img-card {
-            width: 96px;
-            height: 96px;
-            margin: 0 auto 10px;
-            display: block;
-            -moz-border-radius: 50%;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-        }
-
-        /*
-        * Form styles
-        */
-        .profile-name-card {
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            margin: 10px 0 0;
-            min-height: 1em;
-        }
-
-        .reauth-email {
-            display: block;
-            color: #404040;
-            line-height: 2;
-            margin-bottom: 10px;
-            font-size: 14px;
-            text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        .form-signin #inputEmail,
-        .form-signin #inputPassword {
-            direction: ltr;
-            height: 44px;
-            font-size: 16px;
-        }
-
-        .form-signin input[type=email],
-        .form-signin input[type=password],
-        .form-signin input[type=text],
-        .form-signin button {
-            width: 100%;
-            display: block;
-            margin-bottom: 10px;
-            z-index: 1;
-            position: relative;
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        .form-signin .form-control:focus {
-            border-color: rgb(104, 145, 162);
-            outline: 0;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-        }
-
-        .btn.btn-signin {
-            /*background-color: #4d90fe; */
-            background-color: rgb(104, 145, 162);
-            /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-            padding: 0px;
-            font-weight: 700;
-            font-size: 14px;
-            height: 36px;
-            -moz-border-radius: 3px;
-            -webkit-border-radius: 3px;
-            border-radius: 3px;
-            border: none;
-            -o-transition: all 0.218s;
-            -moz-transition: all 0.218s;
-            -webkit-transition: all 0.218s;
-            transition: all 0.218s;
-        }
-
-            .btn.btn-signin:hover,
-            .btn.btn-signin:active,
-            .btn.btn-signin:focus {
-                background-color: rgb(12, 97, 33);
-            }
-
-        .forgot-password {
-            color: rgb(104, 145, 162);
-        }
-
-            .forgot-password:hover,
-            .forgot-password:active,
-            .forgot-password:focus {
-                color: rgb(12, 97, 33);
-            }
+        
     </style>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-
 
     <script type="text/javascript">
         function displayForm(c) {
@@ -177,11 +82,14 @@
 <body>
     <div class="container">
         <div class="card card-container">
-
+           
+        <h1><b><center>Pay Here...!!</center></b></h1>
+        <br/>
+        <br/>
+    
             <div>
                 <form asp-controller="PaymentApp" asp-action="PlaceOrder" method="post">
-                    <br />
-                    <br />
+                    
                     <input value="CC" type="radio" name="payMode" style="transform:scale(1.5,1.5)" checked="checked" onClick="displayForm(this)" />&nbsp;&nbsp;&nbsp;Via Credit Card &nbsp;&nbsp;&nbsp;&nbsp;
 
                     <input value="DC" type="radio" name="payMode" style="transform:scale(1.5,1.5)" onClick="displayForm(this)" />&nbsp;&nbsp;&nbsp;Via Debit Card
@@ -195,7 +103,7 @@
                                 <div class="form-group">
                                     <label>Enter Email: </label>
 
-                                    <input type="email" style="width:500px" placeholder="Email Address" />
+                                    <input type="email" style="width:500px" placeholder="Email Address" required />
 
                                 </div>
                             </div>
@@ -205,7 +113,7 @@
                                 <div class="form-group">
                                     <label>Enter Name: </label>
 
-                                    <input type="text" style="width:500px" placeholder="Your Name here" />
+                                    <input type="text" style="width:500px" placeholder="Your Name here" required />
 
                                 </div>
                             </div>
@@ -220,7 +128,7 @@
 
                         <p>
                             Credit Card Name :
-                            <input type="text" id="ccname" style="width:460px" placeholder="Credit Card Name">
+                            <input type="text" id="ccname" style="width:460px" placeholder="Credit Card Name" required>
                         </p>
                         <br />
                         <div class="row">
@@ -233,7 +141,8 @@
                                                placeholder="Valid Card Number"
                                                autocomplete="cc-number"
                                                minlength="16"
-                                               id="ccnumber" />
+                                               id="ccnumber" 
+                                               required/>
                                         <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                                     </div>
                                 </div>
@@ -247,7 +156,7 @@
                                         <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
 
                                         Month :
-                                        <select>
+                                        <select required>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -261,7 +170,7 @@
                                             <option value="11">11</option>
                                             <option value="12">12</option>
                                         </select> <span>
-                                            Year : <select>
+                                            Year : <select required>
                                                 <option value="2015">2015</option>
                                                 <option value="2016">2016</option>
                                                 <option value="2017">2017</option>
@@ -283,7 +192,8 @@
                                                placeholder="CVC"
                                                minlength="3"
                                                id="cccvc"
-                                               autocomplete="cc-csc" />
+                                               autocomplete="cc-csc" 
+                                               required/>
                                     </div>
                                 </div>
                             </div>
@@ -293,21 +203,29 @@
 
                     </div>
 
+
                     @*``````````````````````````````````````````````````````````````````````````*@
 
-                    <div style="visibility:hidden;position:relative;top:-200px;margin-top:-200px"
+
+
+
+                    <div style="visibility:hidden; position:relative; top:-220px; margin-top:-220px"
                          id="DebitcardformContainer">
 
 
-                        <label>Enter your Debit card details :</label>
+
+
+
+
+                        <label>Enter your debit card details :</label>
                         <br>
                         <br>
 
                         <p>
-                            Name on Debit Card :
-                            <input type="text" id="dcname" style="width:320px" placeholder="Debit Card Name">
+                            Debit Card Name :
+                            <input type="text" id="dcname" style="width:460px" placeholder="Debit Card Name" required>
                         </p>
-                        <br />
+                        
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
@@ -318,22 +236,22 @@
                                                placeholder="Valid Card Number"
                                                autocomplete="dc-number"
                                                minlength="16"
-                                               id="dcnumber"
-                                               style="width:460px" />
-
+                                               id="dcnumber" 
+                                               required/>
+                                        <span class="input-group-addon"><i class="fa fa-debit-card"></i></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <p>
+                        
                             <div class="row">
                                 <div class="col-xs-7 col-md-7">
                                     <div class="form-group">
                                         <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
 
                                         Month :
-                                        <select>
+                                        <select required>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -347,7 +265,7 @@
                                             <option value="11">11</option>
                                             <option value="12">12</option>
                                         </select> <span>
-                                            Year : <select>
+                                            Year : <select required>
                                                 <option value="2015">2015</option>
                                                 <option value="2016">2016</option>
                                                 <option value="2017">2017</option>
@@ -369,31 +287,12 @@
                                                placeholder="CVC"
                                                minlength="3"
                                                id="dccvc"
-                                               autocomplete="dc-csc" />
+                                               autocomplete="dc-csc" 
+                                               required/>
                                     </div>
                                 </div>
                             </div>
 
-                    </div>
-
-                    <label>Total Amount @totalAmount</label>
-
-                    <div id="float_right">
-
-                        @*<a asp-controller="PaymentApp" asp-action="PostValues" class="btn btn-primary" asp-route="">Pay Now</a>*@
-                        <input type="submit" class="btn btn-primary" value="Pay Now" />
-                    </div>
-                </form>
-            </div>
-
-
-
-
-
-        </div><!-- /card-container -->
-    </div><!-- /container -->
-</body>
-</html>
 
 
 
@@ -410,59 +309,13 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-@*<div>
-    <form asp-controller="PaymentApp" asp-action="PlaceOrder" method="post">
-        <br />
-        <br />
-        <input value="CC" type="radio" name="payMode" style="transform:scale(1.5,1.5)" checked="checked" onClick="displayForm(this)"/>&nbsp;&nbsp;&nbsp;Via Credit Card &nbsp;&nbsp;&nbsp;&nbsp;
-
-        <input value="DC" type="radio" name="payMode" style="transform:scale(1.5,1.5)" onClick="displayForm(this)"/>&nbsp;&nbsp;&nbsp;Via Debit Card
-
-        <div style="visibility:hidden; position:relative" id="ccformContainer">
-            <br />
-            <br />
-
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        <label>Enter Email: </label>
-
-                        <input type="email" style="width:500px" placeholder="Email Address" />
-
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="form-group">
-                        <label>Enter Name: </label>
-
-                        <input type="text" style="width:500px" placeholder="Your Name here" />
-
-                    </div>
-                </div>
-            </div>
-
-
-            <br />
-
-            <label>Enter your credit card details :</label>
+                            @*<label>Enter your Debit card details :</label>
             <br>
             <br>
 
             <p>
-                Credit Card Name :
-                <input type="text" id="ccname" style="width:460px" placeholder="Credit Card Name">
+                Name on Debit Card :
+                <input type="text" id="dcname" style="width:320px" placeholder="Debit Card Name">
             </p>
             <br />
             <div class="row">
@@ -472,17 +325,18 @@
                         <div class="input-group">
                             <input type="tel"
                                    class="form-control"
-
                                    placeholder="Valid Card Number"
-                                   autocomplete="cc-number"
+                                   autocomplete="dc-number"
                                    minlength="16"
-                                   id="ccnumber"
-                                    />
+                                   id="dcnumber" />
                             <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
 
             <p>
                 <div class="row">
@@ -524,118 +378,99 @@
                             <label for="cardCVC">CV CODE</label>
                             <input type="tel"
                                    class="form-control"
-
                                    placeholder="CVC"
                                    minlength="3"
-                                   id="cccvc"
-                                   autocomplete="cc-csc"
-                                   />
+                                   id="dccvc"
+                                   autocomplete="dc-csc" />
                         </div>
                     </div>
-                </div>
-
-
-
-
-        </div>*@
-
-
-@*``````````````````````````````````````````````````````````````````````````*@
-
-
-
-
-@*<div style="visibility:hidden;position:relative;top:-200px;margin-top:-200px"
-         id="DebitcardformContainer">
-
-
-        <label>Enter your Debit card details :</label>
-        <br>
-        <br>
-
-        <p>
-            Name on Debit Card :
-            <input type="text" id="dcname" style="width:320px" placeholder="Debit Card Name">
-        </p>
-        <br />
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label for="cardNumber">CARD NUMBER</label>
-                    <div class="input-group">
-                        <input type="tel"
-                               class="form-control"
-
-                               placeholder="Valid Card Number"
-                               autocomplete="dc-number"
-                               minlength="16"
-                               id="dcnumber"
-                               style="width:460px"
-                              />
+                </div>*@
 
                     </div>
-                </div>
-            </div>
-        </div>
 
-        <p>
-            <div class="row">
-                <div class="col-xs-7 col-md-7">
-                    <div class="form-group">
-                        <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                    @*<label>Total Amount @totalAmount</label>*@
 
-                        Month :
-                        <select >
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                        </select> <span>
-                            Year : <select>
-                                <option value="2015">2015</option>
-                                <option value="2016">2016</option>
-                                <option value="2017">2017</option>
-                                <option value="2018">2018</option>
-                                <option value="2019">2019</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                            </select>
-                        </span>
+                    <div id="float_right">
+
+                        @*<a asp-controller="PaymentApp" asp-action="PostValues" class="btn btn-primary" asp-route="">Pay Now</a>*@
+                        <input type="submit" class="btn btn-primary" value="Pay Now" />
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-7 col-md-5">
-                    <div class="form-group">
-                        <label for="cardCVC">CV CODE</label>
-                        <input type="tel"
-                               class="form-control"
-
-                               placeholder="CVC"
-                               minlength="3"
-                               id="dccvc"
-                               autocomplete="dc-csc"
-                                />
-                    </div>
-                </div>
+                </form>
             </div>
 
-    </div>
 
-    @*<label>Total Amount @totalAmount</label>*@
 
-@*<div id="float_right">
 
-    @*<a asp-controller="PaymentApp" asp-action="PostValues" class="btn btn-primary" asp-route="">Pay Now</a>*@
-@*<input type="submit" value="Pay Now"/>
-        </div>
-    </form>*@
-@*</div>*@
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

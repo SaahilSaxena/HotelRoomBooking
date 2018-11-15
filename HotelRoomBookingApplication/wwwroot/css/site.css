@@ -12,6 +12,7 @@ body {
     padding-bottom: 20px;
     /*background-image: url("../images/BackgroundImage1.jpg");*/
     background: linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,.4)), url("../images/BackgroundImage1.jpg");
+    height:1100px;
 }
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
