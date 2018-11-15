@@ -37,7 +37,7 @@ namespace HotelRoomBookingApplication.Controllers
             ViewData["InvoiceNumber"] = InvoiceNumber;
             List<SelectedRoomsViewModel> rooms= service.GetSelectedRooms(HttpContext);
             HotelSearchDetails userinfo = service.GetUserInfo(HttpContext);
-            //int CustomerId = context.Session.GetInt32("CustomerId").Value;
+            int CustomerId = context.Session.GetInt32("CustomerId").Value;
             ViewData["userSearchInfo"] = userinfo;
             ViewData["selectedRooms"] = rooms;
             return View();

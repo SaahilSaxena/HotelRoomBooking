@@ -75,5 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HotelRoomBookingDBProject.publish.xml" />
+    <None Include="HotelRoomBookingDBProjectNew.publish.xml" />
   </ItemGroup>
 </Project>

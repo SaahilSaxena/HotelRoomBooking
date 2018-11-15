@@ -198,9 +198,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-3">
                         <mark>Check-in date</mark><input id="cin" class="form-control" type="date" name="CheckIn" required />
-                        @*<script>
-                            DateInput('checkindate', true, 'DD-MM-YYYY')
-                        </script>*@
+                      
 
                         <br />
                         <br />
@@ -234,9 +232,7 @@
 
                     <div class="col-md-3">
                         <mark>Check-out date</mark><input id="cout" class="form-control" name="CheckOut" type="date" required />
-                        @*<script>
-                            DateInput('checkoutdate', true, 'DD-MM-YYYY')
-                        </script>*@
+                       
 
                     </div>
                     <div class="col-md-2"></div>
@@ -301,50 +297,21 @@
                         cindate.setHours(0, 0, 0, 0);
                         if (cindate < today)
                         {
-                            alert('error');
+                            alert('enter valid date');
                             e.preventDefault();
                         }
                         else if (cindate > coutdate) {
-                            alert('cin > cout');
+                            alert('enter valid date');
                             e.preventDefault();
                         }
                     });
 
                 </script>
             }
-            @*<script>
-            $(function () {
-                $("#datepicker").datepicker({ dateFormat: "mm-dd-yyyy" }).val()
-            });
-            $(function () {
-                $("#datepicker").datepicker();
-                $("#datepicker").on('change', function () {
-                    var date = Date.parse($(this).val());
-                    if (date < Date.now()) {
-                        alert('Selected date must be greater than today date');
-                        $(this).val('');
-                    }
-                });
-            });
+          
 
 
-            //Date picker date format code as follows
-
-
-        </script>*@
-
-
-
-            @*<SCRIPT LANGUAGE="JavaScript">
-                function validate() {
-                    var frm = document.forms["form"];
-                    if (frm.checkbox.checked == false) {
-                        alert("Please Agree To Our Cancellation Policy.");
-                        return false;
-                    } else return true;
-
-                }
-            </SCRIPT>*@
+           
 
 
 
