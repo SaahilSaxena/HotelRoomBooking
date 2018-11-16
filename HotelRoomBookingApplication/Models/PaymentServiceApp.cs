@@ -1,4 +1,5 @@
 ﻿using HotelRoomBookingLibrary;
+using HotelRoomBookingService.InvoiceInfo;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
@@ -20,10 +21,10 @@ namespace HotelRoomBookingApplication.Models
             client.BaseAddress = new Uri("http://localhost:61606");
         }
 
-        public int FinalBooking(string payMode)
+        public InvoiceData FinalBooking(string payMode)
         {
 
-            int InvoiceNumber;
+           
 
             int CustomerId = context.Session.GetInt32("CustomerId").Value;//it is nullable type
 
@@ -43,8 +44,10 @@ namespace HotelRoomBookingApplication.Models
             string json = JsonConvert.SerializeObject(allData);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = client.PostAsync("Payment/MakeBooking", content).Result;
-            InvoiceNumber = Convert.ToInt32(response.Content.ReadAsStringAsync().Result);
-            return InvoiceNumber;
+            string data = response.Content.ReadAsStringAsync().Result;
+            InvoiceData InvoiceInfo = (InvoiceData)JsonConvert.DeserializeObject<InvoiceData>(data);
+            
+            return InvoiceInfo;
 
            
 

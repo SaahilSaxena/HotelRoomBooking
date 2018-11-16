@@ -41,7 +41,7 @@
         * Card component
         */
         .card {
-            background-color: #F7F7F7;
+            background-color: black;
             /* just in case there no content*/
             padding: 20px 25px 30px;
             margin: 0 auto 25px;
@@ -53,6 +53,7 @@
             -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            opacity:0.7;
         }
 
         
@@ -83,11 +84,11 @@
     <div class="container">
         <div class="card card-container">
            
-        <h1><b><center>Pay Here...!!</center></b></h1>
+        <h1 style="color:white"><b><center>Pay Here...!!</center></b></h1>
         <br/>
         <br/>
     
-            <div>
+            <div style="color:white">
                 <form asp-controller="PaymentApp" asp-action="PlaceOrder" method="post">
                     
                     <input value="CC" type="radio" name="payMode" style="transform:scale(1.5,1.5)" checked="checked" onClick="displayForm(this)" />&nbsp;&nbsp;&nbsp;Via Credit Card &nbsp;&nbsp;&nbsp;&nbsp;
@@ -101,9 +102,9 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <label>Enter Email: </label>
+                                    <label style="color:white">Enter Email: </label>
 
-                                    <input type="email" style="width:500px" placeholder="Email Address"  />
+                                    <input name="Email" type="email" style="width:500px;color:black"  placeholder="Email Address"  required />
 
                                 </div>
                             </div>
@@ -111,9 +112,9 @@
                         <div class="row">
                             <div class="col-xs-8">
                                 <div class="form-group">
-                                    <label>Enter Name: </label>
+                                    <label style="color:white">Enter Name: </label>
 
-                                    <input type="text" style="width:500px" placeholder="Your Name here"  />
+                                    <input name="Name" type="text" style="width:500px;color:black" placeholder="Your Name here"  required/>
 
                                 </div>
                             </div>
@@ -122,26 +123,27 @@
 
                         <br />
 
-                        <label>Enter your credit card details :</label>
+                        <label style="color:white">Enter your credit card details :</label>
                         <br>
                         <br>
 
                         <p>
                             Credit Card Name :
-                            <input type="text" id="ccname" style="width:460px" placeholder="Credit Card Name" >
+                            <input type="text" name="CCard" id="ccname" style="width:460px;color:black" placeholder="Credit Card Name" required>
                         </p>
                         <br />
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="cardNumber">CARD NUMBER</label>
+                                    <label style="color:white" for="cardNumber">CARD NUMBER</label>
                                     <div class="input-group">
                                         <input type="tel"
                                                class="form-control"
                                                placeholder="Valid Card Number"
                                                autocomplete="cc-number"
                                                minlength="16"
-                                               id="ccnumber" 
+                                               style="color:black"
+                                               id="ccnumber" required
                                                />
                                         <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                                     </div>
@@ -153,31 +155,31 @@
                             <div class="row">
                                 <div class="col-xs-7 col-md-7">
                                     <div class="form-group">
-                                        <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                                        <label style="color:white" for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
 
                                         Month :
-                                        <select >
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
+                                        <select style="color:black" name="Month" required>
+                                            <option value="Jan" style="color:black">Jan</option>
+                                            <option value="Feb" style="color:black">Feb</option>
+                                            <option value="Mar" style="color:black">Mar</option>
+                                            <option value="Apr" style="color:black">Apr</option>
+                                            <option value="May" style="color:black">May</option>
+                                            <option value="June" style="color:black">June</option>
+                                            <option value="July" style="color:black">July</option>
+                                            <option value="August" style="color:black">August</option>
+                                            <option value="Sept" style="color:black">Sept</option>
+                                            <option value="Oct" style="color:black">Oct</option>
+                                            <option value="Nov" style="color:black">Nov</option>
+                                            <option value="Dec" style="color:black">Dec</option>
                                         </select> <span>
-                                            Year : <select >
-                                                <option value="2015">2015</option>
-                                                <option value="2016">2016</option>
-                                                <option value="2017">2017</option>
-                                                <option value="2018">2018</option>
-                                                <option value="2019">2019</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
+                                            Year : <select style="color:black" name="Year" required>
+                                                <option value="2015" style="color:black">2015</option>
+                                                <option value="2016" style="color:black">2016</option>
+                                                <option value="2017" style="color:black">2017</option>
+                                                <option value="2018" style="color:black">2018</option>
+                                                <option value="2019" style="color:black">2019</option>
+                                                <option value="2020" style="color:black">2020</option>
+                                                <option value="2021" style="color:black">2021</option>
                                             </select>
                                         </span>
                                     </div>
@@ -186,13 +188,14 @@
                             <div class="row">
                                 <div class="col-xs-7 col-md-5">
                                     <div class="form-group">
-                                        <label for="cardCVC">CV CODE</label>
-                                        <input type="tel"
+                                        <label style="color:white" for="cardCVC">CV CODE</label>
+                                        <input type="tel" name="CVC"
                                                class="form-control"
                                                placeholder="CVC"
                                                minlength="3"
                                                id="cccvc"
-                                               autocomplete="cc-csc" 
+                                               style="color:black"
+                                               autocomplete="cc-csc" required
                                                />
                                     </div>
                                 </div>
@@ -209,7 +212,7 @@
 
 
 
-                    <div style="visibility:hidden; position:relative; top:-220px; margin-top:-220px"
+                    <div  style="visibility:hidden; position:relative; top:-220px; margin-top:-220px"
                          id="DebitcardformContainer">
 
 
@@ -217,19 +220,19 @@
 
 
 
-                        <label>Enter your debit card details :</label>
+                        <label style="color:white">Enter your debit card details :</label>
                         <br>
                         <br>
 
                         <p>
                             Debit Card Name :
-                            <input type="text" id="dcname" style="width:460px" placeholder="Debit Card Name" >
+                            <input type="text" id="dcname"  style="width:460px;color:black" placeholder="Debit Card Name"  >
                         </p>
                         
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="cardNumber">CARD NUMBER</label>
+                                    <label style="color:white" for="cardNumber">CARD NUMBER</label>
                                     <div class="input-group">
                                         <input type="tel"
                                                class="form-control"
@@ -237,6 +240,8 @@
                                                autocomplete="dc-number"
                                                minlength="16"
                                                id="dcnumber" 
+                                                style="color:black"
+                                              
                                                />
                                         <span class="input-group-addon"><i class="fa fa-debit-card"></i></span>
                                     </div>
@@ -248,31 +253,31 @@
                             <div class="row">
                                 <div class="col-xs-7 col-md-7">
                                     <div class="form-group">
-                                        <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                                        <label style="color:white" for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
 
                                         Month :
-                                        <select >
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
+                                        <select style="color:black" name="Month" required>
+                                            <option value="Jan" style="color:black">Jan</option>
+                                            <option value="Feb" style="color:black">Feb</option>
+                                            <option value="Mar" style="color:black">Mar</option>
+                                            <option value="Apr" style="color:black">Apr</option>
+                                            <option value="May" style="color:black">May</option>
+                                            <option value="June" style="color:black">June</option>
+                                            <option value="July" style="color:black">July</option>
+                                            <option value="August" style="color:black">August</option>
+                                            <option value="Sept" style="color:black">Sept</option>
+                                            <option value="Oct" style="color:black">Oct</option>
+                                            <option value="Nov" style="color:black">Nov</option>
+                                            <option value="Dec" style="color:black">Dec</option>
                                         </select> <span>
-                                            Year : <select >
-                                                <option value="2015">2015</option>
-                                                <option value="2016">2016</option>
-                                                <option value="2017">2017</option>
-                                                <option value="2018">2018</option>
-                                                <option value="2019">2019</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
+                                            Year : <select style="color:black" name="Year" required>
+                                                <option value="2015" style="color:black">2015</option>
+                                                <option value="2016" style="color:black">2016</option>
+                                                <option value="2017" style="color:black">2017</option>
+                                                <option value="2018" style="color:black">2018</option>
+                                                <option value="2019" style="color:black">2019</option>
+                                                <option value="2020" style="color:black">2020</option>
+                                                <option value="2021" style="color:black">2021</option>
                                             </select>
                                         </span>
                                     </div>
@@ -281,13 +286,15 @@
                             <div class="row">
                                 <div class="col-xs-7 col-md-5">
                                     <div class="form-group">
-                                        <label for="cardCVC">CV CODE</label>
+                                        <label style="color:white" for="cardCVC">CV CODE</label>
                                         <input type="tel"
                                                class="form-control"
                                                placeholder="CVC"
                                                minlength="3"
                                                id="dccvc"
+                                                style="color:black"
                                                autocomplete="dc-csc" 
+                                              
                                                />
                                     </div>
                                 </div>

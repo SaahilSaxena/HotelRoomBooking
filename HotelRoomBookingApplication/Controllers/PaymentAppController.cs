@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using HotelRoomBookingApplication.Models;
 using HotelRoomBookingLibrary;
+using HotelRoomBookingService.Models.DB;
+using HotelRoomBookingService.InvoiceInfo;
 
 namespace HotelRoomBookingApplication.Controllers
 {
     public class PaymentAppController : Controller
     {
         PaymentServiceApp service;
-        public HttpContext context;
        // ILogger<PaymentAppController> log;
         public PaymentAppController()//ILogger<PaymentAppController> log)
         {
@@ -31,15 +32,19 @@ namespace HotelRoomBookingApplication.Controllers
         {
             service.context = HttpContext;
             // service.FinalBooking(payMode);
-            
-           
-            int InvoiceNumber = service.FinalBooking(payMode);
-            ViewData["InvoiceNumber"] = InvoiceNumber;
+
+
+            InvoiceData InvoiceInfo = service.FinalBooking(payMode);
+            ViewData["InvoiceInfo"] = InvoiceInfo;
             List<SelectedRoomsViewModel> rooms= service.GetSelectedRooms(HttpContext);
             HotelSearchDetails userinfo = service.GetUserInfo(HttpContext);
-            int CustomerId = context.Session.GetInt32("CustomerId").Value;
+
+            int days = (userinfo.CheckOut - userinfo.CheckIn).Days + 1;
+
             ViewData["userSearchInfo"] = userinfo;
             ViewData["selectedRooms"] = rooms;
+            ViewData["payMode"] = payMode;
+            ViewData["days"] = days;
             return View();
         }
     }

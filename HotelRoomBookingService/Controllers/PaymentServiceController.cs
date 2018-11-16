@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HotelRoomBookingLibrary;
+using HotelRoomBookingService.InvoiceInfo;
 using HotelRoomBookingService.Models;
 using HotelRoomBookingService.Models.DB;
 using Microsoft.AspNetCore.Http;
@@ -26,9 +27,9 @@ namespace HotelRoomBookingService.Controllers
         [HttpPost]
         public IActionResult BookingDetails(AllData allData)
         {
-            int InvoiceNumber = service.MakeBooking(allData);
+            InvoiceData Info = service.MakeBooking(allData);
             
-            return Ok(InvoiceNumber);
+            return Ok(Info);
         }
 
     }
