@@ -5,15 +5,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HotelRoomServiceTests
 {
     [TestClass]
     public class SearchTests
     {
-        static int PaymentInvoiceNo;
+        static int PaymentInvoiceNo=0, CustomerId=0;
         AdminServiceController controller1;
-        HotelRoomBookingDBContext context;
+        static HotelRoomBookingDBContext context;
         SearchServiceController controller;
         PaymentServiceController controller2;
         public SearchTests()
@@ -60,23 +61,7 @@ namespace HotelRoomServiceTests
 
 
 
-        //[TestMethod]
-
-        //public void AuthenticateTestMethod()
-        //{
-        //    //Arrange
-        //    string email;
-        //    Credentials obj = new Credentials()
-        //    {
-        //        Email = "testmail@gmail.com",
-        //        Password = "123"
-        //    };
-        //    //Act
-        //    email = controller.Authenticate(obj);
-        //    //Assert
-        //    Assert.IsNotNull(email);
-        //}
-
+        
 
 
 
@@ -194,23 +179,23 @@ namespace HotelRoomServiceTests
 
         public void TestForMakeBooking()
         {
-           
+            HotelSearchDetails obj = new HotelSearchDetails();
+
+            obj.CheckIn = DateTime.Parse("2018-11-17");
+            obj.CheckOut = DateTime.Parse("2018-11-19");
+            obj.Ac = false;
+            obj.Wifi = false;
+            obj.HotelId = 510;
+
             SelectedRoomsViewModel list = new SelectedRoomsViewModel();
             
-                list.RoomPrice = 7800;
-                list.HotelContact = "8877887787";
-                list.HotelName = "Hyatt Regency";
-                list.RoomId = 214;
-                list.City = "Delhi";
+                list.RoomPrice = 3500;
+                list.HotelContact = "9876234546";
+                list.HotelName = "Hotel Wow";
+                list.RoomId = 219;
+                list.City = "Indore";
             
-            HotelSearchDetails obj = new HotelSearchDetails();
-            
-                obj.CheckIn = DateTime.Parse("2018-11-15");
-                obj.CheckOut = DateTime.Parse("2018-11-17");
-                obj.Ac = false;
-                obj.Wifi = false;
-                obj.HotelId = 503;
-
+           
 
             AllData data = new AllData();
             
@@ -220,19 +205,43 @@ namespace HotelRoomServiceTests
                 data.userinfo = obj;
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-            var result = controller2.BookingDetails(data);
+            var result = (OkObjectResult)controller2.BookingDetails(data);
+            PaymentInvoiceNo = (int)result.Value;
             Assert.IsInstanceOfType(result, typeof(OkObjectResult));
 
 
 
 
         }
-        
-        //[ClassCleanup]
-        //public static void CleanUp()
-        //{
 
-        //}
+        [ClassCleanup]
+        public static void CleanUp()
+        {
+            if (CustomerId != 0)
+            {
+                var customer = context.Customer.SingleOrDefault(c => c.CustomerId == CustomerId);
+                // var details = context.SelectedRooms.SingleOrDefault(s => s.HotelId == HotelId);
+             
+                context.Customer.Remove(customer);
+                // context.SelectedRooms.Remove(details);
+                context.SaveChanges();
+            }
+            if(PaymentInvoiceNo!=0)
+            {
+                var bookingid=context.Payment.Where(c => c.PaymentInvoiceNo == PaymentInvoiceNo).Select(c => c.BookingId).FirstOrDefault();
+                var booking = context.Booking.SingleOrDefault(b => b.BookingId == bookingid);
+                var bookingdetails = context.BookingDetails.Where(d => d.BookingId == bookingid).ToArray();
+                context.BookingDetails.RemoveRange(bookingdetails);
+                var payment = context.Payment.SingleOrDefault(p => p.PaymentInvoiceNo == PaymentInvoiceNo);
+                context.Payment.Remove(payment);
+                context.Booking.Remove(booking);
+              
+                
+                context.SaveChanges();
+            }
+       
+
+        }
 
     }
 }

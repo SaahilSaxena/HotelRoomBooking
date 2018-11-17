@@ -1,17 +1,93 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<html>
+<head>
+    <style>
+
+        body, html {
+            height: 100%;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+        }
+
+        .card-container.card {
+            max-width: 1300px;
+            padding: 40px 40px;
+            opacity: 0.7;
+            height: 700px;
+        }
+
+
+
+        /*
+        * Card component
+        */
+        .card {
+            background-color: black;
+            /* just in case there no content*/
+            padding: 20px 25px 30px;
+            margin: 0 auto 25px;
+            margin-top: 50px;
+            /* shadows and rounded borders */
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            opacity: 0.7;
+        }
+    </style>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="card card-container">
+
+            <br /><br /><br /><br />
+            <center>
+                <font style="font-family:Broadway;color:white; font-size:100px">@ViewData["Title"]</font>
+            </center>
+
+
+            <br /><br /><br /><br /><br /><br />
+            <strong style="color:white">
+
+                <address>
+                   HAPPY LIVE INN <br />
+                    TRD-503, Uranus<br />
+                    Tower- D, First Floor<br />
+                    Plot No. TZ-2 & 2A, Sector Tech Zone, Yamuna Expressway<br/>
+                    Greater Noida<br/>
+                    Uttar Pradesh 201308
+                    <br />
+                    <abbr title="Phone">Phone Number:</abbr>
+                    0120 459 2300
+                </address>
+
+            <address>
+            <strong>Support:</strong> <a href="mailto:Support@happyliveinn.com">Support@happyliveinn.com</a><br />
+            <strong>Marketing:</strong> <a href="mailto:Marketing@happyliveinn.com">Marketing@happyliveinn.com</a>
+            </address>
+
+
+            </strong>
+
+
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+</body>
+</html>
+
+
+
+
+
+
+
+

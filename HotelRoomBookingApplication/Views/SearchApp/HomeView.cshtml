@@ -21,7 +21,7 @@
         body, html {
             height: 100%;
             background-repeat: no-repeat;
-            background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+            background-image:url("~/images/finalleafbgimage.jpg");
         }
 
         .card-container.card {
@@ -43,7 +43,7 @@
         * Card component
         */
         .card {
-            background-color: #F7F7F7;
+            background-color: black;
             /* just in case there no content*/
             padding: 20px 25px 30px;
             margin: 0 auto 25px;
@@ -55,6 +55,7 @@
             -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            opacity: 0.7;
         }
 
         .profile-img-card {
@@ -168,7 +169,7 @@
 <body>
     <div class="container">
         <div class="card card-container">
-            <h1 style="text-align:center">Welcome to Happy Live Inn!!</h1>
+            <h1 style="text-align:center; color:white">Welcome to Happy Live Inn!!</h1>
 
             <p id="profile-name" class="profile-name-card"></p>
             <form asp-action="AvailableRooms" asp-controller="SearchApp">
@@ -197,19 +198,17 @@
 
                     <div class="col-md-2"></div>
                     <div class="col-md-3">
-                        <mark>Check-in date</mark><input id="cin" class="form-control" type="date" name="CheckIn" required />
-                        @*<script>
-                            DateInput('checkindate', true, 'DD-MM-YYYY')
-                        </script>*@
+                        <span style="color: white" >Check-in date</span><input id="cin" class="form-control" type="date" name="CheckIn" required />
+                      
 
                         <br />
                         <br />
                         <br />
-                        <input type="checkbox" asp-for="Wifi" style="transform:scale(1.5,1.5)" /><mark>&nbsp;&nbsp;&nbsp; WiFi Facility</mark>
+                        <input type="checkbox" asp-for="Wifi" style="transform:scale(1.5,1.5)" /><span  style="color: white">&nbsp;&nbsp;&nbsp; WiFi Facility</span>
                         <br />
                         <br />
                         <br />
-                        <input type="checkbox" asp-for="Ac" style="transform:scale(1.5,1.5)" /><mark>&nbsp;&nbsp;&nbsp; A/C Facility</mark>
+                        <input type="checkbox" asp-for="Ac" style="transform:scale(1.5,1.5)" /><span  style="color: white">&nbsp;&nbsp;&nbsp; A/C Facility</span>
                         <br />
                         <br />
                         <br />
@@ -233,10 +232,8 @@
                     </div>
 
                     <div class="col-md-3">
-                        <mark>Check-out date</mark><input id="cout" class="form-control" name="CheckOut" type="date" required />
-                        @*<script>
-                            DateInput('checkoutdate', true, 'DD-MM-YYYY')
-                        </script>*@
+                        <span style="color: white">Check-out date</mark><input id="cout" class="form-control" name="CheckOut" type="date" required />
+                       
 
                     </div>
                     <div class="col-md-2"></div>
@@ -301,50 +298,21 @@
                         cindate.setHours(0, 0, 0, 0);
                         if (cindate < today)
                         {
-                            alert('error');
+                            alert('enter valid date');
                             e.preventDefault();
                         }
                         else if (cindate > coutdate) {
-                            alert('cin > cout');
+                            alert('enter valid date');
                             e.preventDefault();
                         }
                     });
 
                 </script>
             }
-            @*<script>
-            $(function () {
-                $("#datepicker").datepicker({ dateFormat: "mm-dd-yyyy" }).val()
-            });
-            $(function () {
-                $("#datepicker").datepicker();
-                $("#datepicker").on('change', function () {
-                    var date = Date.parse($(this).val());
-                    if (date < Date.now()) {
-                        alert('Selected date must be greater than today date');
-                        $(this).val('');
-                    }
-                });
-            });
+          
 
 
-            //Date picker date format code as follows
-
-
-        </script>*@
-
-
-
-            @*<SCRIPT LANGUAGE="JavaScript">
-                function validate() {
-                    var frm = document.forms["form"];
-                    if (frm.checkbox.checked == false) {
-                        alert("Please Agree To Our Cancellation Policy.");
-                        return false;
-                    } else return true;
-
-                }
-            </SCRIPT>*@
+           
 
 
 

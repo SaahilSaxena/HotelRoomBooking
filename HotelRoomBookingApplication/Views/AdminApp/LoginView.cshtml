@@ -22,6 +22,7 @@
         .card-container.card {
             max-width: 350px;
             padding: 40px 40px;
+            opacity: 0.7;
            
         }
 
@@ -38,7 +39,7 @@
  * Card component
  */
         .card {
-            background-color: #F7F7F7;
+            background-color: black;
             /* just in case there no content*/
             padding: 20px 25px 30px;
             margin: 0 auto 25px;
@@ -50,6 +51,7 @@
             -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            opacity: 0.7;
         }
 
         .profile-img-card {
@@ -157,8 +159,8 @@
 <body>
     <div class="container">
         <div class="card card-container">
-            <h1 style="text-align:center">User Login</h1>
-           -00-
+            <h1 style="text-align:center; color:white">User Login</h1>
+           
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
             <form name="login" asp-action="Login" asp-controller="AdminApp" method="post">

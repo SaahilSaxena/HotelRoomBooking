@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using HotelRoomBookingService.InvoiceInfo;
 namespace HotelRoomBookingService.Models
 {
     public class PaymentService
@@ -19,7 +19,7 @@ namespace HotelRoomBookingService.Models
 
 
         
-        public int MakeBooking(AllData allData)
+        public InvoiceData MakeBooking(AllData allData)
         {
             Booking booking = new Booking();
             booking.CustomerId = allData.CustomerId;
@@ -86,12 +86,18 @@ namespace HotelRoomBookingService.Models
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-
             context.SaveChanges();
-            return payment.PaymentInvoiceNo;
+
+            Customer customer = context.Customer.SingleOrDefault(c => c.CustomerId == allData.CustomerId);
+            InvoiceData data = new InvoiceData();
+            data.customer = customer;
+            data.customer.Booking = null;  data.customer.Payment = null;
+            data.InvoiceNo= payment.PaymentInvoiceNo;
+            return data;
             
 
         }
+        
     }
 }
 

@@ -22,7 +22,7 @@ namespace HotelRoomBookingService.Models.DB
         public virtual DbSet<Hotel> Hotel { get; set; }
         public virtual DbSet<HotelRoom> HotelRoom { get; set; }
         public virtual DbSet<Payment> Payment { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
+
         public virtual DbSet<SelectedRooms> SelectedRooms { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -30,7 +30,7 @@ namespace HotelRoomBookingService.Models.DB
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("server=localhost;database=HotelRoomBookingDB;trusted_connection=yes");
+                optionsBuilder.UseSqlServer("server=TRD-503;database=HotelRoomBookingDB;trusted_connection=yes");
             }
         }
 
@@ -189,31 +189,7 @@ namespace HotelRoomBookingService.Models.DB
                     .HasConstraintName("Paymentfk2");
             });
 
-            modelBuilder.Entity<Product>(entity =>
-            {
-                entity.Property(e => e.Price)
-                    .IsRequired()
-                    .HasMaxLength(30)
-                    .IsUnicode(false);
 
-                entity.Property(e => e.ProductDescription)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ProductImage)
-                    .IsRequired()
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ProductName)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.SupplierName)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-            });
         }
     }
 }

@@ -38,9 +38,11 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a asp-area="" asp-controller="Home" asp-action="Index" style="font-size:medium"><b>Home</b></a></li>
-                        </ul>
-                        @*<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
+                        <li><a asp-area="" asp-controller="Home" asp-action="About"  style="font-size:medium"><b>About</b></a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact" style="font-size:medium"><b>Contact</b></a></li>
+
+                    </ul>
+                        
                     <div style="float:right; padding: 15px 0px">
                         <a asp-area="" asp-controller="AdminApp" asp-action="LoginView" style="font-size:medium; color: gray"><b>Log In</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a asp-area="" asp-controller="Adminapp" asp-action="NewCustomer" style="font-size:medium; color: gray"><b>Sign Up</b></a>
