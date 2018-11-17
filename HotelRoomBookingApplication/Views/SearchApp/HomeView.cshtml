@@ -1,6 +1,7 @@
 ﻿@using HotelRoomBookingLibrary;
 @{
     ViewData["Title"] = "HomeView";
+    Layout = "_LayoutLogout";
     SelectList citylist = (SelectList)ViewData["cities"];
     SelectList Hotellist = (SelectList)ViewData["hotels"];
 
@@ -28,6 +29,7 @@
             max-width: 800px;
             height: 650px;
             padding: 40px 40px;
+            opacity: 0.8;
         }
 
         .btn {
@@ -55,7 +57,7 @@
             -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         .profile-img-card {
@@ -198,17 +200,17 @@
 
                     <div class="col-md-2"></div>
                     <div class="col-md-3">
-                        <span style="color: white" >Check-in date</span><input id="cin" class="form-control" type="date" name="CheckIn" required />
-                      
+                        <span style="color: white">Check-in date</span><input id="cin" class="form-control" type="date" name="CheckIn" required />
+
 
                         <br />
                         <br />
                         <br />
-                        <input type="checkbox" asp-for="Wifi" style="transform:scale(1.5,1.5)" /><span  style="color: white">&nbsp;&nbsp;&nbsp; WiFi Facility</span>
+                        <input type="checkbox" asp-for="Wifi" style="transform:scale(1.5,1.5)" /><span style="color: white">&nbsp;&nbsp;&nbsp; WiFi Facility</span>
                         <br />
                         <br />
                         <br />
-                        <input type="checkbox" asp-for="Ac" style="transform:scale(1.5,1.5)" /><span  style="color: white">&nbsp;&nbsp;&nbsp; A/C Facility</span>
+                        <input type="checkbox" asp-for="Ac" style="transform:scale(1.5,1.5)" /><span style="color: white">&nbsp;&nbsp;&nbsp; A/C Facility</span>
                         <br />
                         <br />
                         <br />
@@ -229,16 +231,17 @@
                         <br />
                         <br />
                         <center><input id="btnsubmit" type="submit" class="btn btn-primary" value="Search" /></center>
+
                     </div>
 
                     <div class="col-md-3">
                         <span style="color: white">Check-out date</mark><input id="cout" class="form-control" name="CheckOut" type="date" required />
-                       
+
 
                     </div>
-                    <div class="col-md-2"></div>
 
 
+                    <div class="col-md-12" asp-validation-summary="All" style="font-size:20px; color:red;text-align:center"></div>
 
 
                 </div>

@@ -58,7 +58,7 @@ namespace HotelRoomBookingApplication.Controllers
             int result = service.Login(credentials);
             if (result == 0)
             {
-                ModelState.AddModelError("Email", "Login Failed..");
+                ModelState.AddModelError("Email", "Invalid Email or Password.");
                 return View("LoginView", credentials);
             }
             else {
@@ -79,9 +79,17 @@ namespace HotelRoomBookingApplication.Controllers
         [HttpPost]
         public IActionResult NewCustomer(Customer c1)
         {
-            service.AddRecord(c1);
+            int duplicate = service.AddRecord(c1);
+            if (duplicate == 0)
+            {
 
-            return RedirectToAction("LoginView");
+                return RedirectToAction("LoginView");
+            }
+            else
+            {
+                ModelState.AddModelError("Email", "Email Already Exists!!");
+                return View("NewCustomer",c1);
+            }
         }
 
 

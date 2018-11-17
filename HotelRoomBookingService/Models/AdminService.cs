@@ -37,10 +37,16 @@ namespace HotelRoomBookingService.Controllers.Models
         //}
 
 
-        public void AddRecord(Customer c1)
+        public int AddRecord(Customer c1)
         {
-            context.Customer.Add(c1);
-            context.SaveChanges();
+            Customer customer = context.Customer.Where(d=>d.Email==c1.Email).SingleOrDefault();
+            if (customer == null)
+            {
+                context.Customer.Add(c1);
+                context.SaveChanges();
+                return 0;  //
+            }
+            return 1;// duplicate email
         }
 
 

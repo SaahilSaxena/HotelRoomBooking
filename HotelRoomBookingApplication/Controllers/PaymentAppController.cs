@@ -28,7 +28,7 @@ namespace HotelRoomBookingApplication.Controllers
         {
             return View();
         }
-        public IActionResult PlaceOrder(string payMode)
+        public IActionResult Invoice(string payMode)
         {
             service.context = HttpContext;
             // service.FinalBooking(payMode);
@@ -45,6 +45,8 @@ namespace HotelRoomBookingApplication.Controllers
             ViewData["selectedRooms"] = rooms;
             ViewData["payMode"] = payMode;
             ViewData["days"] = days;
+
+            HttpContext.Session.Clear();
             return View();
         }
     }

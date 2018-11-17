@@ -45,8 +45,14 @@ namespace HotelRoomBookingService.Controllers
         [HttpPost]
         public IActionResult NewCustomer(Customer c1)
         {
-            service.AddRecord(c1);
-            return Ok();
+            int duplicate = service.AddRecord(c1);
+            if (duplicate == 1)
+            {
+
+                return Ok(1);
+            }
+            else
+                return NotFound();  // duplicate not found  //email exist only once
         }
        
        

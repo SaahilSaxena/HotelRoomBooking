@@ -5,6 +5,7 @@
 @model List<SelectedRoomsViewModel>
 @{
     ViewData["Title"] = "AvailableRooms";
+    Layout = "_LayoutLogout";
 }
 
 <html>
@@ -24,8 +25,9 @@
 
         .card-container.card {
             max-width: 1000px;
-            height: 1000px;
+            height: 1250px;
             padding: 40px 40px;
+            opacity: 1.0;
         }
 
         .btn {
@@ -53,7 +55,7 @@
             -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            opacity:0.7;
+            opacity:1.0;
         }
 
         
@@ -90,7 +92,10 @@
                         <input type="hidden" value="@Model[0].HotelName" name="[0].HotelName" />
                     </h1><br />
 
-
+                    <p style="text-align:justify; font-size:16px; font-family:Viner Hand ITC;color:white">
+                        The hotel is the best known in the city. All the facilities like Wifi, AC. etc. can be availed here.<br />
+                        The hospitality has matched all the expextations of the customers and is upto the mark to its service, as they have the vision of Atithi Devo Bhava!!
+                    </p><br /><br />
                     <h4>
                         <label  style="color: white">@Model[0].City</label>
                         <input type="hidden" value="@Model[0].City" />

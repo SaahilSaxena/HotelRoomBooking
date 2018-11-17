@@ -2,6 +2,7 @@
 @model Credentials
 @{
     ViewData["Title"] = "LoginView";
+    Layout = "_Layout";
 }
 
 <html>
@@ -22,7 +23,7 @@
         .card-container.card {
             max-width: 350px;
             padding: 40px 40px;
-            opacity: 0.7;
+            opacity: 0.8;
            
         }
 
@@ -51,7 +52,7 @@
             -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         .profile-img-card {
@@ -171,7 +172,7 @@
                 <br />
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Login</button>
                 <br />
-
+                <div asp-validation-summary="All" class="text-danger" style="font-size:15px"></div>
             </form><!-- /form -->
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
