@@ -46,13 +46,13 @@ namespace HotelRoomBookingApplication.Controllers
             {
                 service.UserSearchInfo(HttpContext, details);
                 list = service.GetRooms(details);
-                //if (list.Count == 0)
-                //{
+                if (list.Count == 0)
+                {
                     ModelState.AddModelError("", "No Rooms Available..");
                     return View("HomeView", details);
 
-                //}
-               //return View(list);
+                }
+               return View(list);
             }
             catch(Exception e)
             {
